@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:keepScreenOn="true"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:weightSum="2"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/HealthText"
+                android:id="@+id/main_activity_textView_player1_health"
+                android:text="20"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <TextView
+                style="@style/HealthText"
+                android:id="@+id/main_activity_textView_player2_health"
+                android:text="20"
+                android:layout_weight="1"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ButtonLayout">
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player1_plus1"
+                android:text="+1"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player1_minus1"
+                android:text="-1"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player2_minus1"
+                android:text="-1"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player2_plus1"
+                android:text="+1"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/ButtonLayout">
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player1_plus5"
+                android:text="+5"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player1_minus5"
+                android:text="-5"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player2_minus5"
+                android:text="-5"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+            <Button
+                style="@style/HealthButton"
+                android:id="@+id/main_activity_button_player2_plus5"
+                android:text="+5"
+                tools:ignore="HardcodedText,NestedWeights"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/main_activity_relative_layout_poison_counter"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/PoisonText"
+            android:id="@+id/main_activity_textView_player1_poison"
+            android:layout_alignParentLeft="true"
+            android:text="0"/>
+
+        <Button
+            style="@style/PoisonButton"
+            android:id="@+id/main_activity_button_player1_poison_plus"
+            android:text="+"
+            android:layout_below="@id/main_activity_textView_player1_poison"/>
+
+        <Button
+            style="@style/PoisonButton"
+            android:id="@+id/main_activity_button_player1_poison_minus"
+            android:text="-"
+            android:layout_below="@id/main_activity_button_player1_poison_plus"/>
+
+        <TextView
+            style="@style/PoisonText"
+            android:id="@+id/main_activity_textView_player2_poison"
+            android:layout_alignParentRight="true"
+            android:text="0"/>
+
+        <Button
+            style="@style/PoisonButton"
+            android:layout_alignParentRight="true"
+            android:id="@+id/main_activity_button_player2_poison_plus"
+            android:text="+"
+            android:layout_below="@id/main_activity_textView_player2_poison"/>
+
+        <Button
+            style="@style/PoisonButton"
+            android:layout_alignParentRight="true"
+            android:id="@+id/main_activity_button_player2_poison_minus"
+            android:text="-"
+            android:layout_below="@id/main_activity_button_player2_poison_plus"/>
+    </RelativeLayout>
+</RelativeLayout>

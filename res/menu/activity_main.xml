@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_poison_counter"
+        android:title="@string/show_poison_counter"/>
+    <item android:id="@+id/menu_flip_coin"
+        android:title="@string/flip_coin" />
+    <item android:id="@+id/menu_roll_d20"
+        android:title="@string/roll_d20" />
+    <item android:id="@+id/menu_reset_life"
+        android:title="@string/reset_life" />
+</menu>
