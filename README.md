@@ -1,4 +1,4 @@
-# Magic Life Counter [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=co.nodeath.magichealthcounter)
+# Magic Life Counter [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=co.nodeath.magichealthcounter) ![Travis Build Status](https://api.travis-ci.org/pieces029/MagicLifeCounter.png)
 
 ![Android Market](http://chart.apis.google.com/chart?cht=qr&chs=135x135&chl=market://details?id=co.nodeath.magichealthcounter)
 
