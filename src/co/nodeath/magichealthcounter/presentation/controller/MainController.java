@@ -120,23 +120,6 @@ public class MainController extends AbstractActivityController {
         }
     }
 
-    /**
-     * Checks if the device has a hardware menu key
-     *
-     * @return true if the devices has a hardware menu button
-     */
-    public boolean hasHardwareMenuButton() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
-                && Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            return false;
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            return ViewConfiguration.get(mActivity).hasPermanentMenuKey();
-        } else {
-            return true;
-        }
-    }
-
     private boolean isApiGreaterThan4() {
         return Build.VERSION.SDK_INT > Build.VERSION_CODES.DONUT;
     }
