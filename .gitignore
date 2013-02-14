@@ -30,3 +30,8 @@ proguard/
 
 # maven generated files
 gen-external-apklibs/
+target/
+
+# Other stuff I don't want pushed
+mykeystore
+web_hi_res_512.png
