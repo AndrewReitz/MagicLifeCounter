@@ -6,7 +6,7 @@
 
     <groupId>co.nodeath.magichealthcounter</groupId>
     <artifactId>MagicHealthCounter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.3.2-SNAPSHOT</version>
     <packaging>apk</packaging>
     <name>Magic Health Counter</name>
 
