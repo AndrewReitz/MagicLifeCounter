@@ -1,5 +1,4 @@
 language: java
-install: ant prepare-travis-ci
 script: mvn install -X
 
 notifications:
