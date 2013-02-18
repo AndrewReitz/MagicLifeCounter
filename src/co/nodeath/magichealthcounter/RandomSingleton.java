@@ -52,7 +52,7 @@ public class RandomSingleton {
     /**
      * Get a random value 0 -> n-1
      *
-     * @param n maximum value
+     * @param n positive integer, maximum value
      * @return random integer 0 through n-1
      */
     public int getRandom(int n) {
