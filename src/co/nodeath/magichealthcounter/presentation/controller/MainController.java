@@ -23,9 +23,9 @@ package co.nodeath.magichealthcounter.presentation.controller;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.TextView;
 
 import co.nodeath.magichealthcounter.presentation.activity.MainActivityAPI5AndAbove;
@@ -41,8 +41,27 @@ import co.nodeath.magichealthcounter.presentation.dialog.D20DialogAPI5Plus;
  */
 public class MainController extends AbstractActivityController {
 
+    private static final String INSTANT_STATE_PLAYER1 = "player1textView";
+    private static final String INSTANT_STATE_PLAYER2 = "player2textView";
+
     public MainController(FragmentActivity activity) {
         super.onCreate(activity);
+    }
+
+    public void restoreInstanceState(final Bundle savedState, final TextView player1TextView,
+            final TextView player2TextView) {
+
+        if (savedState != null) {
+            player1TextView.setText(savedState.getString(INSTANT_STATE_PLAYER1));
+            player2TextView.setText(savedState.getString(INSTANT_STATE_PLAYER2));
+        }
+    }
+
+    public void saveInstanceState(final Bundle outState, final TextView player1TextView,
+            final TextView player2TextView) {
+
+        outState.putString(INSTANT_STATE_PLAYER1, player1TextView.getText().toString());
+        outState.putString(INSTANT_STATE_PLAYER2, player2TextView.getText().toString());
     }
 
     public View.OnClickListener getOnClickListener(final TextView textView, final int value) {

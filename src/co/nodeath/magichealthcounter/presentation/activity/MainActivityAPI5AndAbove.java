@@ -20,9 +20,6 @@
 
 package co.nodeath.magichealthcounter.presentation.activity;
 
-import co.nodeath.magichealthcounter.R;
-import co.nodeath.magichealthcounter.presentation.controller.MainController;
-
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
@@ -34,6 +31,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewConfiguration;
 import android.widget.RelativeLayout;
+
+import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.presentation.controller.MainController;
 
 /**
  * MainActivity for phones running API 5 (2.0 Eclair) extends @{link
@@ -57,6 +57,8 @@ public class MainActivityAPI5AndAbove extends Activity {
         setContentView(R.layout.activity_main);
 
         mMainController = new MainController(this);
+        mMainController.restoreInstanceState(savedInstanceState, mTextViewPlayer1Health,
+                mTextViewPlayer2Health);
 
         if (hasHardwareMenuButton()) {
             getSupportActionBar().hide();
@@ -107,6 +109,14 @@ public class MainActivityAPI5AndAbove extends Activity {
                 mMainController.getOnClickListener(mTextViewPlayer2PoisonCounter, 1, true));
         findViewById(R.id.main_activity_button_player2_poison_minus).setOnClickListener(
                 mMainController.getOnClickListener(mTextViewPlayer2PoisonCounter, -1, true));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        mMainController.saveInstanceState(outState, mTextViewPlayer1Health,
+                mTextViewPlayer2Health);
     }
 
     @Override
