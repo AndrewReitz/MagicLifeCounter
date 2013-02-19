@@ -54,9 +54,6 @@ public class MainActivityAPI4AndBelow extends FragmentActivity {
         mMainController = new MainController(this);
         mMainController.checkSdkVersion();
 
-        mMainController.restoreInstanceState(savedInstanceState, mTextViewPlayer1Health,
-                mTextViewPlayer2Health);
-
         //Get the layout to be able to display the poison counters
         mRelativeLayoutPoisonCounter = (RelativeLayout) findViewById(
                 R.id.main_activity_relative_layout_poison_counter);
@@ -103,6 +100,9 @@ public class MainActivityAPI4AndBelow extends FragmentActivity {
                 mMainController.getOnClickListener(mTextViewPlayer2PoisonCounter, 1, true));
         findViewById(R.id.main_activity_button_player2_poison_minus).setOnClickListener(
                 mMainController.getOnClickListener(mTextViewPlayer2PoisonCounter, -1, true));
+
+        mMainController.restoreInstanceState(savedInstanceState, mTextViewPlayer1Health,
+                mTextViewPlayer2Health);
     }
 
     @Override

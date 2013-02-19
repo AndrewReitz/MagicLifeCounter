@@ -57,8 +57,6 @@ public class MainActivityAPI5AndAbove extends Activity {
         setContentView(R.layout.activity_main);
 
         mMainController = new MainController(this);
-        mMainController.restoreInstanceState(savedInstanceState, mTextViewPlayer1Health,
-                mTextViewPlayer2Health);
 
         if (hasHardwareMenuButton()) {
             getSupportActionBar().hide();
@@ -109,6 +107,9 @@ public class MainActivityAPI5AndAbove extends Activity {
                 mMainController.getOnClickListener(mTextViewPlayer2PoisonCounter, 1, true));
         findViewById(R.id.main_activity_button_player2_poison_minus).setOnClickListener(
                 mMainController.getOnClickListener(mTextViewPlayer2PoisonCounter, -1, true));
+
+        mMainController.restoreInstanceState(savedInstanceState, mTextViewPlayer1Health,
+                mTextViewPlayer2Health);
     }
 
     @Override
