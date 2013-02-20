@@ -36,3 +36,4 @@ gen-external-apklibs/
 mykeystore
 target/
 web_hi_res_512.png
+tmp/
