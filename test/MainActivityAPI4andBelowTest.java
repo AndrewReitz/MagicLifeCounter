@@ -3,7 +3,9 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,6 +24,9 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityAPI4andBelowTest {
+
+    @Mock
+    private Bundle mBundle;
 
     private MainActivityAPI4AndBelow mActivity;
     private TextView mTextViewPlayer1;
@@ -113,5 +118,15 @@ public class MainActivityAPI4andBelowTest {
 
         mButtonPlayer2Minus1.performClick();
         assertThat(mTextViewPlayer2.getText().toString(), equalTo(expected));
+    }
+
+    @Test
+    public void should() throws Exception {
+        String expected = "25";
+        mTextViewPlayer1.setText(expected);
+        mTextViewPlayer2.setText(expected);
+
+
+        //mActivity.onSaveInstanceState();
     }
 }
