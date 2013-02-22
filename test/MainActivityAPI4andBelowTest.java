@@ -1,6 +1,7 @@
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -14,6 +15,11 @@ import co.nodeath.magichealthcounter.presentation.activity.MainActivityAPI4AndBe
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 
 /**
@@ -43,6 +49,8 @@ public class MainActivityAPI4andBelowTest {
     //Runs before each test
     @Before
     public void setUp() throws Exception {
+        initMocks(this);
+
         mActivity = new MainActivityAPI4AndBelow();
         mActivity.onCreate(null);
 
@@ -121,12 +129,32 @@ public class MainActivityAPI4andBelowTest {
     }
 
     @Test
-    public void should() throws Exception {
+    public void shouldSaveTextViewTextToBundle() throws Exception {
         String expected = "25";
+
         mTextViewPlayer1.setText(expected);
         mTextViewPlayer2.setText(expected);
 
+        mActivity.onSaveInstanceState(mBundle);
 
-        //mActivity.onSaveInstanceState();
+        verify(mBundle, atLeastOnce()).putString("player1textView", expected);
+        verify(mBundle, atLeastOnce()).putString("player2textView", expected);
+    }
+
+    @Test
+    public void shouldSetTextViewsToTextFromBundle() throws Exception {
+        String expected = "25";
+
+        when(mBundle.getString("player1textView")).thenReturn(expected);
+        when(mBundle.getString("player2textView")).thenReturn(expected);
+
+        MainActivityAPI4AndBelow activity = new MainActivityAPI4AndBelow();
+        activity.onCreate(mBundle);
+
+        TextView textView1 = (TextView)activity.findViewById(R.id.main_activity_textView_player1_health);
+        assertThat(textView1.getText().toString(), equalTo(expected));
+
+        TextView textView2 = (TextView)activity.findViewById(R.id.main_activity_textView_player2_health);
+        assertThat(textView2.getText().toString(), equalTo(expected));
     }
 }
