@@ -22,13 +22,11 @@ package co.nodeath.magichealthcounter.presentation.activity;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.widget.ShareActionProvider;
 
 import org.holoeverywhere.app.Activity;
 import org.holoeverywhere.widget.TextView;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 
@@ -119,20 +117,9 @@ public class MainActivityAPI5AndAbove extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.activity_main, menu);
-
         MenuItem menuItem = menu.findItem(R.id.menu_share);
+        mMainController.connectShareActionProvider(menuItem);
 
-        ShareActionProvider mShareActionProvider = (ShareActionProvider) menuItem
-                .getActionProvider();
-
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        shareIntent.setType("text/plain");
-
-        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
-
-        mShareActionProvider.setShareIntent(shareIntent);
         return true;
     }
 

@@ -20,6 +20,9 @@
 
 package co.nodeath.magichealthcounter.presentation.controller;
 
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.ShareActionProvider;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -28,6 +31,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.presentation.activity.MainActivityAPI5AndAbove;
 import co.nodeath.magichealthcounter.presentation.dialog.CoinFlipDialogAPI4Minus;
 import co.nodeath.magichealthcounter.presentation.dialog.CoinFlipDialogAPI5Plus;
@@ -75,6 +79,19 @@ public class MainController extends AbstractActivityController {
                 setTextViewValue(textView, value, poisonCounter);
             }
         };
+    }
+
+    public void connectShareActionProvider(MenuItem menuItem) {
+        ShareActionProvider mShareActionProvider = (ShareActionProvider) menuItem
+                .getActionProvider();
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+        shareIntent.setType("text/plain");
+
+        shareIntent.putExtra(Intent.EXTRA_TEXT, mActivity.getString(R.string.share_text));
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, mActivity.getString(R.string.share_subject));
+        mShareActionProvider.setShareIntent(shareIntent);
     }
 
     /**
