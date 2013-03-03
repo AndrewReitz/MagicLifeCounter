@@ -7,7 +7,7 @@
     <item
         android:id="@+id/menu_roll_d20"
         android:icon="@drawable/ic_menu_die"
-        android:title="@string/roll_die"
+        android:title="@string/d20_roll"
         android:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/menu_poison_counter"
