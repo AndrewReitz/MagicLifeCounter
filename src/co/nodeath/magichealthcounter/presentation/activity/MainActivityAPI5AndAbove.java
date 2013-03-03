@@ -117,9 +117,6 @@ public class MainActivityAPI5AndAbove extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getSupportMenuInflater().inflate(R.menu.activity_main, menu);
-        MenuItem menuItem = menu.findItem(R.id.menu_share);
-        mMainController.connectShareActionProvider(menuItem);
-
         return true;
     }
 

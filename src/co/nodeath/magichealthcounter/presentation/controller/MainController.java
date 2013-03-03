@@ -81,19 +81,6 @@ public class MainController extends AbstractActivityController {
         };
     }
 
-    public void connectShareActionProvider(MenuItem menuItem) {
-        ShareActionProvider mShareActionProvider = (ShareActionProvider) menuItem
-                .getActionProvider();
-
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        shareIntent.setType("text/plain");
-
-        shareIntent.putExtra(Intent.EXTRA_TEXT, mActivity.getString(R.string.share_text));
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, mActivity.getString(R.string.share_subject));
-        mShareActionProvider.setShareIntent(shareIntent);
-    }
-
     /**
      * Resets the text views to there default color and resets their values
      *
