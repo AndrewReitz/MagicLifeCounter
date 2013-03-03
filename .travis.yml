@@ -1,5 +1,0 @@
-language: java
-script: mvn install -X
-
-notifications:
-  email: false
