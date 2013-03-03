@@ -58,10 +58,6 @@ public class MainActivityAPI5AndAbove extends Activity {
 
         mMainController = new MainController(this);
 
-        if (hasHardwareMenuButton()) {
-            getSupportActionBar().hide();
-        }
-
         mRelativeLayoutPoisonCounter = (RelativeLayout) findViewById(
                 R.id.main_activity_relative_layout_poison_counter);
 
@@ -144,24 +140,6 @@ public class MainActivityAPI5AndAbove extends Activity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    /**
-     * Checks if the device has a hardware menu key This is here instead of main controller because
-     * API 1.5 freaks out
-     *
-     * @return true if the devices has a hardware menu button
-     */
-    public boolean hasHardwareMenuButton() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB
-                && Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            return false;
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            return ViewConfiguration.get(this).hasPermanentMenuKey();
-        } else {
-            return true;
         }
     }
 }
