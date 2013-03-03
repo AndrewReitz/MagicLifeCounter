@@ -11,5 +11,11 @@
     <string name="d20_roll">D20 Roll</string>
     <string name="you_rolled">You rolled: %d</string>
     <string name="show_poison_counter">Show/Hide Poison Counter</string>
+    <string name="share">Share</string>
+    <string name="share_text">I use Magic Life Counter an open source and free app for keeping track
+        of my life totals! http://bit.ly/Ykc7GP
+    </string>
+    <string name="share_subject">Magic The Gathering: Magic Life Counter App</string>
+    <string name="roll_die">Roll Die</string>
 
 </resources>
