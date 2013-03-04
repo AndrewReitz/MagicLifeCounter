@@ -29,7 +29,7 @@ import android.support.v4.app.FragmentActivity;
  */
 public abstract class AbstractActivityController {
 
-    protected FragmentActivity mActivity;
+    public FragmentActivity mActivity;
 
     /**
      * Call this in order to save the activity this is here instead of in the constructor because not

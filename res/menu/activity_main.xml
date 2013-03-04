@@ -1,10 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_poison_counter"
-        android:title="@string/show_poison_counter"/>
-    <item android:id="@+id/menu_flip_coin"
-        android:title="@string/flip_coin" />
-    <item android:id="@+id/menu_roll_d20"
-        android:title="@string/roll_d20" />
-    <item android:id="@+id/menu_reset_life"
+    <item
+        android:id="@+id/menu_flip_coin"
+        android:icon="@drawable/ic_menu_coin"
+        android:title="@string/flip_coin"
+        android:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menu_roll_d20"
+        android:icon="@drawable/ic_menu_die"
+        android:title="@string/d20_roll"
+        android:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menu_poison_counter"
+        android:title="@string/show_poison_counter" />
+    <item
+        android:id="@+id/menu_reset_life"
         android:title="@string/reset_life" />
 </menu>
