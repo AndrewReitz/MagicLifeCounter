@@ -31,7 +31,7 @@ import static org.junit.Assert.assertTrue;
 public class RandomSingletonTest {
 
     @Test
-    public void shouldReturnAValueBetweenZeroAndN() {
+    public void shouldReturnAValueBetweenZeroAndN() throws Exception {
         RandomSingleton r = RandomSingleton.getInstance();
 
         for (int i = 0; i < 100; i++) {
@@ -40,5 +40,7 @@ public class RandomSingletonTest {
             assertTrue(actual < 20);
             assertTrue(actual > -1);
         }
+
+        throw new Exception("TEST");
     }
 }
