@@ -1,6 +1,7 @@
 # Magic Life Counter [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=co.nodeath.magichealthcounter)
 
 ![Android Market](http://chart.apis.google.com/chart?cht=qr&chs=135x135&chl=market://details?id=co.nodeath.magichealthcounter)
+[![Build Status](http://ci.nodeath.co:8080/job/MagicLifeCounter/badge/icon)](http://ci.nodeath.co:8080/job/MagicLifeCounter/)
 
 
 ### General
