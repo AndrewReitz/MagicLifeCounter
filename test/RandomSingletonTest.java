@@ -40,7 +40,5 @@ public class RandomSingletonTest {
             assertTrue(actual < 20);
             assertTrue(actual > -1);
         }
-
-        throw new Exception("TEST");
     }
 }
