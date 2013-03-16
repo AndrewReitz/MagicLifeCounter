@@ -106,7 +106,7 @@ public class MainActivityAPI4AndBelow extends FragmentActivity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         mMainController.saveInstanceState(outState, mTextViewPlayer1Health, mTextViewPlayer2Health);

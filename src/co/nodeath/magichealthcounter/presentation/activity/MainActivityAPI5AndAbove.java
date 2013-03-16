@@ -107,7 +107,7 @@ public class MainActivityAPI5AndAbove extends Activity {
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
         mMainController.saveInstanceState(outState, mTextViewPlayer1Health,
