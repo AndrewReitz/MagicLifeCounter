@@ -33,7 +33,6 @@ proguard/
 gen-external-apklibs/
 
 # Other things I don't want pushed to github
-mykeystore
 target/
 web_hi_res_512.png
 tmp/
