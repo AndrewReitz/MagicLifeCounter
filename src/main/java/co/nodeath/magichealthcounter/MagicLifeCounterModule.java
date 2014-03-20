@@ -1,0 +1,39 @@
+package co.nodeath.magichealthcounter;
+
+import android.app.Application;
+
+import co.nodeath.magichealthcounter.data.DataModule;
+import co.nodeath.magichealthcounter.ui.UiModule;
+
+import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+
+@Module(
+        includes = {
+                UiModule.class,
+                DataModule.class
+        },
+        injects = {
+                MagicLifeCounterApp.class
+        }
+)
+public final class MagicLifeCounterModule {
+    private final MagicLifeCounterApp app;
+
+    public MagicLifeCounterModule(@NotNull MagicLifeCounterApp app) {
+        this.app = app;
+    }
+
+    /**
+     * Allow the app context to be injected but require that it be annotated with
+     * {@link ForApplication}
+     * to explicitly differentiate it from an activity context.
+     */
+    @Provides @Singleton @ForApplication Application provideApplication() {
+        return app;
+    }
+}
