@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.MagicLifeCounter" parent="android:Theme.Holo">
+    <style name="Theme.MagicLifeCounter" parent="android:Theme.Holo.Light">
         <!-- Place your theme settings here! -->
     </style>
 </resources>
