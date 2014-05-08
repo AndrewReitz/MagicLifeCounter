@@ -2,5 +2,7 @@
 <resources>
     <dimen name="default_layout_padding">16dp</dimen>
     <dimen name="default_layout_margin">16dp</dimen>
+    <dimen name="default_layout_margin_half">8dp</dimen>
+    <dimen name="default_layout_margin_quarter">4dp</dimen>
     <!-- Add Other Dimensions Here -->
 </resources>

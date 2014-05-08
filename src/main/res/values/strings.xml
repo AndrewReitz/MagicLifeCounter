@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magic Life Counter</string>
+    <string name="casual">Casual</string>
+    <string name="tournement">Tournament</string>
+    <string name="multi_player">Multi-Player</string>
+    <string name="about">About</string>
 </resources>
