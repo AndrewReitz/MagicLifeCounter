@@ -11,6 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.inkapplications.preferences.BooleanPreference;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -18,13 +23,16 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
 
+import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
 public class MainActivity extends BaseActivity {
 
   @Inject AppContainer appContainer;
+  @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
   @InjectView(R.id.navigation_drawer) ViewGroup navdrawerContainer;
@@ -34,8 +42,6 @@ public class MainActivity extends BaseActivity {
   @InjectView(R.id.nav_drawer_tournament) TextView tournament;
 
   private ActionBarDrawerToggle drawerToggle;
-  private ViewGroup container;
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,7 @@ public class MainActivity extends BaseActivity {
 
     MagicLifeCounterApp app = MagicLifeCounterApp.get(this);
 
-    container = appContainer.get(this, app);
+    ViewGroup container = appContainer.get(this, app);
 
     getLayoutInflater().inflate(R.layout.activity_main, container);
 
@@ -51,37 +57,7 @@ public class MainActivity extends BaseActivity {
     LayoutInflater.from(this).inflate(R.layout.drawer_layout, drawer);
     ButterKnife.inject(this);
 
-    final ActionBar actionBar = getActionBar();
-    if (actionBar == null) return; // should never happen but shuts lint up
-
-    drawerToggle = new ActionBarDrawerToggle(
-        this,
-        drawerLayout,
-        R.drawable.ic_drawer,
-        R.string.navigation_drawer_open,
-        R.string.navigation_drawer_close
-    ) {
-
-      /** Called when a drawer has settled in a completely closed state. */
-      public void onDrawerClosed(View view) {
-        super.onDrawerClosed(view);
-        actionBar.setTitle(getString(R.string.app_name));
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-      }
-
-      /** Called when a drawer has settled in a completely open state. */
-      public void onDrawerOpened(View drawerView) {
-        super.onDrawerOpened(drawerView);
-        actionBar.setTitle("TEST2");
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-      }
-    };
-
-    drawerLayout.setDrawerListener(drawerToggle);
-    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
-
-    actionBar.setDisplayHomeAsUpEnabled(true);
-    actionBar.setHomeButtonEnabled(true);
+    setupNavigationDrawer();
   }
 
   @Override
@@ -107,5 +83,48 @@ public class MainActivity extends BaseActivity {
     super.onPostCreate(savedInstanceState);
     // Sync the toggle state after onRestoreInstanceState has occurred.
     drawerToggle.syncState();
+  }
+
+  private void setupNavigationDrawer() {
+    final ActionBar actionBar = getActionBar();
+
+    drawerToggle = new ActionBarDrawerToggle(
+        this,
+        drawerLayout,
+        R.drawable.ic_drawer,
+        R.string.navigation_drawer_open,
+        R.string.navigation_drawer_close
+    ) {
+
+      /** Called when a drawer has settled in a completely closed state. */
+      public void onDrawerClosed(View view) {
+        super.onDrawerClosed(view);
+        actionBar.setTitle(getString(R.string.app_name));
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+      }
+
+      /** Called when a drawer has settled in a completely open state. */
+      public void onDrawerOpened(View drawerView) {
+        super.onDrawerOpened(drawerView);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+      }
+    };
+
+    drawerLayout.setDrawerListener(drawerToggle);
+    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setHomeButtonEnabled(true);
+
+    // Display nav drawer if it's the first time the app is opened per Google's guidelines
+    if (!seenNavDrawer.get()) {
+      drawerLayout.postDelayed(new Runnable() {
+        @Override public void run() {
+          drawerLayout.openDrawer(Gravity.START);
+          Toast.makeText(MainActivity.this, R.string.drawer_intro_text, LENGTH_LONG).show();
+        }
+      }, TimeUnit.MILLISECONDS.toMillis(500));
+      seenNavDrawer.set(true);
+    }
   }
 }

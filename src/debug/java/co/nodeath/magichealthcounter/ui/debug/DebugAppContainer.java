@@ -47,6 +47,7 @@ import co.nodeath.magichealthcounter.data.PixelRatioEnabled;
 import co.nodeath.magichealthcounter.data.ScalpelEnabled;
 import co.nodeath.magichealthcounter.data.ScalpelWireframeEnabled;
 import co.nodeath.magichealthcounter.data.SeenDebugDrawer;
+import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.AppContainer;
 import co.nodeath.magichealthcounter.util.Strings;
 import timber.log.Timber;
@@ -67,6 +68,7 @@ public class DebugAppContainer implements AppContainer {
   private final IntPreference animationSpeed;
   private final BooleanPreference scalpelWireframeEnabled;
   private final BooleanPreference seenDebugDrawer;
+  private final BooleanPreference seenNavDrawer;
 
   MagicLifeCounterApp app;
   Activity activity;
@@ -78,7 +80,8 @@ public class DebugAppContainer implements AppContainer {
       @AnimationSpeed IntPreference animationSpeed,
       @ScalpelEnabled BooleanPreference scalpelEnabled,
       @ScalpelWireframeEnabled BooleanPreference scalpelWireframeEnabled,
-      @SeenDebugDrawer BooleanPreference seenDebugDrawer
+      @SeenDebugDrawer BooleanPreference seenDebugDrawer,
+      @SeenNavDrawer BooleanPreference seenNavDrawer
   ) {
     this.scalpelEnabled = scalpelEnabled;
     this.scalpelWireframeEnabled = scalpelWireframeEnabled;
@@ -86,6 +89,7 @@ public class DebugAppContainer implements AppContainer {
     this.animationSpeed = animationSpeed;
     this.pixelGridEnabled = pixelGridEnabled;
     this.pixelRatioEnabled = pixelRatioEnabled;
+    this.seenNavDrawer = seenNavDrawer;
   }
 
   @InjectView(R.id.debug_drawer_layout) DrawerLayout drawerLayout;
@@ -114,6 +118,8 @@ public class DebugAppContainer implements AppContainer {
   @InjectView(R.id.debug_device_density) TextView deviceDensityView;
   @InjectView(R.id.debug_device_release) TextView deviceReleaseView;
   @InjectView(R.id.debug_device_api) TextView deviceApiView;
+
+  @InjectView(R.id.debug_preference_nav_drawer) Switch prefSeenNavDrawer;
 
   @Override public ViewGroup get(final Activity activity, MagicLifeCounterApp app) {
     this.app = app;
@@ -148,6 +154,7 @@ public class DebugAppContainer implements AppContainer {
     }
 
     setupUserInterfaceSection();
+    setupPreferenceSection();
     setupBuildSection();
     setupDeviceSection();
 
@@ -228,6 +235,17 @@ public class DebugAppContainer implements AppContainer {
         Timber.d("Setting scalpel wireframe enabled to " + isChecked);
         scalpelWireframeEnabled.set(isChecked);
         scalpelFrameLayout.setDrawViews(!isChecked);
+      }
+    });
+  }
+
+  private void setupPreferenceSection() {
+    final boolean seenNav = seenNavDrawer.get();
+    prefSeenNavDrawer.setChecked(seenNav);
+    prefSeenNavDrawer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Timber.d("Setting Seen Nav Drawer to " + isChecked);
+        seenNavDrawer.set(isChecked);
       }
     });
   }
