@@ -1,8 +1,6 @@
 # Magic Life Counter [![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_45.png)](https://play.google.com/store/apps/details?id=co.nodeath.magichealthcounter)
 
-![Android Market](http://chart.apis.google.com/chart?cht=qr&chs=135x135&chl=market://details?id=co.nodeath.magichealthcounter)
-[![Build Status](http://ci.nodeath.co/job/MagicLifeCounter/badge/icon)](http://ci.nodeath.co/job/MagicLifeCounter/)
-
+[![Build Status](https://travis-ci.org/pieces029/MagicLifeCounter.svg?branch=develop)](https://travis-ci.org/pieces029/MagicLifeCounter)
 
 ### General
 Simple app for keeping track of your life totals in Magic the Gathering. You don't always have a pen and paper but you always have your phone. I created this because all the other apps I tried were too busy, had ads or just way to much stuff going on. This is a simplistic life counter, no ads and nothing else. Best of all requires NO Device Permissions!
