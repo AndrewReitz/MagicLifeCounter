@@ -15,7 +15,7 @@ public class CasualFragment extends MagicFragment {
     View view = super.onCreateView(inflater, container, savedInstanceState);
     ButterKnife.inject(this, view);
 
-    ButterKnife.apply(themViews, FLIP_VIEWS);
+    ButterKnife.apply(themViews, FLIP_VIEWS_180_DEGREES);
     ButterKnife.apply(scoreViews, SET_STANDARD_LIFE);
     ButterKnife.apply(poisonCounters, SET_STANDARD_LIFE);
 
