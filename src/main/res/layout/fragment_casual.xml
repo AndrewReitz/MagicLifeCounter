@@ -1,93 +1,86 @@
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:columnCount="1"
-            android:rowCount="6"
-            android:paddingLeft="@dimen/default_layout_padding"
-            android:paddingRight="@dimen/default_layout_padding"
-            android:paddingTop="@dimen/default_layout_padding"
-            android:paddingBottom="@dimen/default_layout_padding">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/default_layout_padding">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="+5"/>
+            android:id="@+id/them_plus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+5"
+            tools:ignore="HardcodedText"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="-5"/>
+            android:id="@+id/them_minus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-5"
+            tools:ignore="HardcodedText"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="+1"/>
+            android:id="@+id/them_plus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+1"
+            tools:ignore="HardcodedText"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="-1"/>
+            android:id="@+id/them_minus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton.Rotated"
+            android:text="-1"
+            tools:ignore="HardcodedText"/>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/them_score"
+        style="@style/Widget.MagicLifeCounter.MainText"
+        android:layout_weight="1"
         android:text="20"
-        android:gravity="center"
-        android:layout_width="fill_parent"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:layout_height="wrap_content"/>
+        tools:ignore="HardcodedText"/>
 
+    <!-- Bottom -->
     <TextView
+        android:id="@+id/me_score"
+        style="@style/Widget.MagicLifeCounter.MainText"
+        android:layout_weight="1"
         android:text="20"
-        android:gravity="center"
-        android:layout_width="fill_parent"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:layout_height="wrap_content"/>
+        tools:ignore="HardcodedText"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="+1"/>
+            android:id="@+id/me_plus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+1"
+            tools:ignore="HardcodedText"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="-1"/>
+            android:id="@+id/me_minus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-1"
+            tools:ignore="HardcodedText"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="+5"/>
+            android:id="@+id/me_plus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+5"
+            tools:ignore="HardcodedText"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="-5"/>
+            android:id="@+id/me_minus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-5"
+            tools:ignore="HardcodedText"/>
     </LinearLayout>
-
-</GridLayout>
+</LinearLayout>
