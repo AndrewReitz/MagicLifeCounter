@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        style="@style/Widget.MagicLifeCounter.MainRelativeLayout">
+
+        <TextView
+            android:id="@+id/them_score"
+            style="@style/Widget.MagicLifeCounter.MainText"
+            android:text="20"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/them_poison_counter"
+            android:visibility="gone"
+            android:layout_alignParentStart="true"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:text="0"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+    <!-- Bottom -->
+    <RelativeLayout
+        style="@style/Widget.MagicLifeCounter.MainRelativeLayout">
+
+        <TextView
+            android:id="@+id/me_score"
+            style="@style/Widget.MagicLifeCounter.MainText"
+            android:text="20"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/me_poison_counter"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:text="0"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+</merge>

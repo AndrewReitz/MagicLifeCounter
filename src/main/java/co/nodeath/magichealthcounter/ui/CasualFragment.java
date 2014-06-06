@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
-public class CasualFragment extends MagicFragment {
+public final class CasualFragment extends MagicFragment {
 
   @Override public View onCreateView(
       LayoutInflater inflater, ViewGroup container,

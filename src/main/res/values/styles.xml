@@ -36,7 +36,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">@dimen/main_text_size</item>
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
     </style>
 

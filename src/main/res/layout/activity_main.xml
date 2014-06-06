@@ -1,5 +1,6 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -13,7 +14,9 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="co.nodeath.magichealthcounter.ui.CasualFragment"/>
+            android:tag="content_fragment"
+            android:name="co.nodeath.magichealthcounter.ui.CasualFragment"
+            tools:layout="@layout/fragment_main"/>
     </FrameLayout>
 
     <!-- Navigation Drawer -->
