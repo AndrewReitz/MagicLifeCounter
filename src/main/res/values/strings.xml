@@ -10,5 +10,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="drawer_intro_text">Navigate to different counters here!</string>
+    <string name="settings">Settings</string>
 
 </resources>

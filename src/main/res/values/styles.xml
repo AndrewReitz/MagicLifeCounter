@@ -17,6 +17,11 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <style name="Widget.MagicLifeCounter.MainRelativeLayout" parent="None">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="Widget.MagicLifeCounter.MainButton" parent="android:Widget.Holo.Light.Button">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
@@ -33,5 +38,11 @@
         <item name="android:gravity">center</item>
         <item name="android:textSize">50sp</item>
         <item name="android:textAppearance">?android:textAppearanceLarge</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.SecondaryText" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

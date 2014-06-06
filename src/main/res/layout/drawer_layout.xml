@@ -23,6 +23,11 @@
         android:text="@string/multi_player"/>
 
     <TextView
+        android:id="@+id/nav_drawer_settings"
+        style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
+        android:text="@string/settings"/>
+
+    <TextView
         android:id="@+id/nav_drawer_about"
         style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
         android:text="@string/about"/>

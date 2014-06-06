@@ -37,20 +37,44 @@
             tools:ignore="HardcodedText"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/them_score"
-        style="@style/Widget.MagicLifeCounter.MainText"
-        android:layout_weight="1"
-        android:text="20"
-        tools:ignore="HardcodedText"/>
+    <RelativeLayout
+        style="@style/Widget.MagicLifeCounter.MainRelativeLayout">
+
+        <TextView
+            android:id="@+id/them_score"
+            style="@style/Widget.MagicLifeCounter.MainText"
+            android:text="20"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/them_poison_counter"
+            android:visibility="gone"
+            android:layout_alignParentStart="true"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:text="0"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
 
     <!-- Bottom -->
-    <TextView
-        android:id="@+id/me_score"
-        style="@style/Widget.MagicLifeCounter.MainText"
-        android:layout_weight="1"
-        android:text="20"
-        tools:ignore="HardcodedText"/>
+    <RelativeLayout
+        style="@style/Widget.MagicLifeCounter.MainRelativeLayout">
+
+        <TextView
+            android:id="@+id/me_score"
+            style="@style/Widget.MagicLifeCounter.MainText"
+            android:text="20"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/me_poison_counter"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:text="0"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         style="@style/Widget.MagicLifeCounter.MainLinearLayout">
