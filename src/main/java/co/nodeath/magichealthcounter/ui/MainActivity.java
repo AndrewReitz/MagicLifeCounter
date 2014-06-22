@@ -1,6 +1,7 @@
 package co.nodeath.magichealthcounter.ui;
 
 import android.app.ActionBar;
+import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -13,18 +14,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.common.collect.Maps;
 import com.inkapplications.preferences.BooleanPreference;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
+import icepick.Icicle;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
@@ -41,7 +46,25 @@ public class MainActivity extends BaseActivity {
   @InjectView(R.id.nav_drawer_multi_player) TextView multiplayer;
   @InjectView(R.id.nav_drawer_tournament) TextView tournament;
 
+  @Icicle Class<? extends Fragment> currentFragment;
+
   private ActionBarDrawerToggle drawerToggle;
+  private Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
+
+  @OnClick(R.id.nav_drawer_casual) void casualClick() {
+    navigateToFragment(CasualFragment.class);
+    drawerLayout.closeDrawers();
+  }
+
+  @OnClick(R.id.nav_drawer_tournament) void tournamentClick() {
+    navigateToFragment(TournamentFragment.class);
+    drawerLayout.closeDrawers();
+  }
+
+  @OnClick(R.id.nav_drawer_about) void aboutClick() {
+    navigateToFragment(CasualFragment.class);
+    drawerLayout.closeDrawers();
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +81,13 @@ public class MainActivity extends BaseActivity {
     ButterKnife.inject(this);
 
     setupNavigationDrawer();
+
+    fragments.put(CasualFragment.class, CasualFragment.newInstance());
+    fragments.put(TournamentFragment.class, TournamentFragment.newInstance());
+
+    if (savedInstanceState == null) {
+      navigateToFragment(CasualFragment.class);
+    }
   }
 
   @Override
@@ -83,6 +113,15 @@ public class MainActivity extends BaseActivity {
     super.onPostCreate(savedInstanceState);
     // Sync the toggle state after onRestoreInstanceState has occurred.
     drawerToggle.syncState();
+  }
+
+  private void navigateToFragment(Class<? extends Fragment> fragmentClass) {
+    if (fragmentClass.equals(currentFragment)) return;
+
+    currentFragment = fragmentClass;
+    getFragmentManager().beginTransaction()
+        .replace(R.id.content_frame, fragments.get(fragmentClass))
+        .commit();
   }
 
   private void setupNavigationDrawer() {

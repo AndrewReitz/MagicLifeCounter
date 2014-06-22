@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
-public final class CasualFragment extends MagicFragment {
+public final class TournamentFragment extends MagicFragment {
 
-  public static CasualFragment newInstance() {
-    return new CasualFragment();
+  public static TournamentFragment newInstance() {
+    return new TournamentFragment();
   }
 
   @Override public View onCreateView(
@@ -19,9 +19,8 @@ public final class CasualFragment extends MagicFragment {
     View view = super.onCreateView(inflater, container, savedInstanceState);
     ButterKnife.inject(this, view);
 
-    ButterKnife.apply(themViews, FLIP_VIEWS_180_DEGREES);
     ButterKnife.apply(scoreViews, SET_STANDARD_LIFE);
-    ButterKnife.apply(poisonCounters, SET_STANDARD_LIFE);
+    ButterKnife.apply(poisonCounters, SET_ZERO);
 
     return view;
   }

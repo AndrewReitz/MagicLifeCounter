@@ -18,7 +18,7 @@ import hugo.weaving.DebugLog;
 
 abstract class MagicFragment extends BaseFragment {
 
-  /** Move These to Dagger? */
+  /** Move These to Dagger? ...absolutely */
   static final ButterKnife.Action<View> FLIP_VIEWS_180_DEGREES = new ButterKnife.Action<View>() {
     @Override public void apply(View view, int index) {
       view.setRotation(180);
