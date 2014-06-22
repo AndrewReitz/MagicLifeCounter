@@ -21,7 +21,6 @@ apply plugin: 'hugo'
 
 repositories {
   mavenCentral()
-  maven { url = 'https://oss.jfrog.org/oss-snapshot-local/' }
 }
 
 dependencies {
@@ -85,7 +84,7 @@ android {
   }
 
   lintOptions {
-    abortOnError false
+    abortOnError true
   }
 
   compileOptions {
@@ -93,3 +92,4 @@ android {
     targetCompatibility JavaVersion.VERSION_1_7
   }
 }
+
