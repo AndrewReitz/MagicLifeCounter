@@ -99,6 +99,7 @@ public class MainActivity extends BaseActivity {
       /** Called when a drawer has settled in a completely closed state. */
       public void onDrawerClosed(View view) {
         super.onDrawerClosed(view);
+        //noinspection ConstantConditions
         actionBar.setTitle(getString(R.string.app_name));
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
       }
@@ -113,6 +114,7 @@ public class MainActivity extends BaseActivity {
     drawerLayout.setDrawerListener(drawerToggle);
     drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
 
+    //noinspection ConstantConditions
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setHomeButtonEnabled(true);
 
