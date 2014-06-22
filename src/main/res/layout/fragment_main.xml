@@ -44,23 +44,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            style="@style/Widget.MagicLifeCounter.MainText"
-            android:text="20"
-            tools:ignore="HardcodedText"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Widget.MagicLifeCounter.MainText"
+                android:layout_centerInParent="true"
+                android:text="20"
+                tools:ignore="HardcodedText"/>
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            style="@style/Widget.MagicLifeCounter.MainText"
-            android:text="20"
-            tools:ignore="HardcodedText"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Widget.MagicLifeCounter.MainText"
+                android:layout_centerInParent="true"
+                android:text="20"
+                tools:ignore="HardcodedText"/>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
