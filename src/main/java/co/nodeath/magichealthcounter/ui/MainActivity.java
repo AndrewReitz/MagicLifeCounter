@@ -71,14 +71,13 @@ public class MainActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
 
     MagicLifeCounterApp app = MagicLifeCounterApp.get(this);
-
     ViewGroup container = appContainer.get(this, app);
-
     getLayoutInflater().inflate(R.layout.activity_main, container);
 
     ViewGroup drawer = findById(this, R.id.navigation_drawer);
     LayoutInflater.from(this).inflate(R.layout.drawer_layout, drawer);
     ButterKnife.inject(this);
+    MagicLifeCounterApp.get(this).inject(this);
 
     setupNavigationDrawer();
 

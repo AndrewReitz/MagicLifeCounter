@@ -5,9 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.ButterKnife;
+import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 
-public final class MultiPlayerFragment extends MagicFragment {
+public final class MultiPlayerFragment extends BaseFragment {
+
 
   public static MultiPlayerFragment newInstance() {
     return new MultiPlayerFragment();
@@ -17,10 +18,6 @@ public final class MultiPlayerFragment extends MagicFragment {
       LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = super.onCreateView(inflater, container, savedInstanceState);
-    ButterKnife.inject(this, view);
-
-    ButterKnife.apply(scoreViews, SET_COMMANDER_LIFE);
-    ButterKnife.apply(poisonCounters, SET_ZERO);
 
     return view;
   }

@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
@@ -16,47 +15,7 @@ import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 import hugo.weaving.DebugLog;
 
-abstract class MagicFragment extends BaseFragment {
-
-  /** Move These to Dagger? ...absolutely */
-  static final ButterKnife.Action<View> FLIP_VIEWS_180_DEGREES = new ButterKnife.Action<View>() {
-    @Override public void apply(View view, int index) {
-      view.setRotation(180);
-    }
-  };
-
-  static final ButterKnife.Action<View> SHOW_VIEWS = new ButterKnife.Action<View>() {
-    @Override public void apply(View view, int index) {
-      view.setVisibility(View.VISIBLE);
-    }
-  };
-
-  static final ButterKnife.Action<View> HIDE_VIEWS = new ButterKnife.Action<View>() {
-    @Override public void apply(View view, int index) {
-      view.setVisibility(View.GONE);
-    }
-  };
-
-  static final ButterKnife.Action<TextView> SET_STANDARD_LIFE = new ButterKnife.Action<TextView>() {
-    @Override public void apply(TextView view, int index) {
-      view.setTag(20);
-      view.setText("20");
-    }
-  };
-
-  static final ButterKnife.Action<TextView> SET_COMMANDER_LIFE = new ButterKnife.Action<TextView>() {
-    @Override public void apply(TextView view, int index) {
-      view.setTag(40);
-      view.setText("40");
-    }
-  };
-
-  static final ButterKnife.Action<TextView> SET_ZERO = new ButterKnife.Action<TextView>() {
-    @Override public void apply(TextView view, int index) {
-      view.setTag(0);
-      view.setText("0");
-    }
-  };
+abstract class TwoPlayerFragment extends BaseFragment {
 
   @InjectViews({
       R.id.them_minus_1,

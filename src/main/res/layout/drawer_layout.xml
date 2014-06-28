@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              style="@android:style/Widget.ListView"
+              style="?android:buttonBarStyle"
               android:background="?android:colorBackground">
 
     <TextView
@@ -25,6 +25,7 @@
 
     <TextView
         android:id="@+id/nav_drawer_settings"
+        android:visibility="gone"
         style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
         android:text="@string/settings"/>
 
