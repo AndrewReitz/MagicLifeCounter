@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.google.common.collect.Maps;
 import com.inkapplications.preferences.BooleanPreference;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -38,6 +40,7 @@ public class MainActivity extends BaseActivity {
 
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
+  @Inject Bus bus;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
   @InjectView(R.id.navigation_drawer) ViewGroup navdrawerContainer;
@@ -50,6 +53,8 @@ public class MainActivity extends BaseActivity {
 
   private ActionBarDrawerToggle drawerToggle;
   private Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
+
+  private String actionbarTitle = "";
 
   @OnClick(R.id.nav_drawer_casual) void casualClick() {
     navigateToFragment(CasualFragment.class);
@@ -89,6 +94,16 @@ public class MainActivity extends BaseActivity {
     }
   }
 
+  @Override protected void onResume() {
+    super.onResume();
+    bus.register(this);
+  }
+
+  @Override protected void onPause() {
+    super.onPause();
+    bus.unregister(this);
+  }
+
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
@@ -112,6 +127,12 @@ public class MainActivity extends BaseActivity {
     super.onPostCreate(savedInstanceState);
     // Sync the toggle state after onRestoreInstanceState has occurred.
     drawerToggle.syncState();
+  }
+
+  @Subscribe public void onActionbarTitleChange(ActionBarTitleEvent event) {
+    actionbarTitle = event.title;
+    //noinspection ConstantConditions
+    getActionBar().setTitle(actionbarTitle);
   }
 
   private void navigateToFragment(Class<? extends Fragment> fragmentClass) {
@@ -138,13 +159,15 @@ public class MainActivity extends BaseActivity {
       public void onDrawerClosed(View view) {
         super.onDrawerClosed(view);
         //noinspection ConstantConditions
-        actionBar.setTitle(getString(R.string.app_name));
+        actionBar.setTitle(actionbarTitle);
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
       }
 
       /** Called when a drawer has settled in a completely open state. */
       public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
+        //noinspection ConstantConditions
+        actionBar.setTitle(getString(R.string.app_name));
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
       }
     };

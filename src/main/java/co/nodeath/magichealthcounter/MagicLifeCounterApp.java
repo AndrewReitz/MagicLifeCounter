@@ -32,9 +32,6 @@ public class MagicLifeCounterApp extends Application {
             // Place Prod Logging here
         }
 
-        // Setup debugging for butterknife
-        ButterKnife.setDebug(BuildConfig.DEBUG);
-
         buildObjectGraphAndInject();
 
         registerActivityLifecycleCallbacks(activityHierarchyServer);

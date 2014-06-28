@@ -6,15 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.otto.Bus;
+
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
+import co.nodeath.magichealthcounter.R;
 
 public final class TournamentFragment extends TwoPlayerFragment {
 
   @Inject @Standard ButterKnife.Action<TextView> setStandardLife;
   @Inject @Zero ButterKnife.Action<TextView> setZero;
+  @Inject Bus bus;
 
   public static TournamentFragment newInstance() {
     return new TournamentFragment();
@@ -31,5 +35,10 @@ public final class TournamentFragment extends TwoPlayerFragment {
     ButterKnife.apply(poisonCounters, setZero);
 
     return view;
+  }
+
+  @Override public void onResume() {
+    super.onResume();
+    bus.post(new ActionBarTitleEvent(getString(R.string.tournement)));
   }
 }
