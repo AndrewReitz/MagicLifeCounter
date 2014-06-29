@@ -4,11 +4,14 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,12 +34,13 @@ import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
+import hugo.weaving.DebugLog;
 import icepick.Icicle;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnTouchListener {
 
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
@@ -51,6 +55,7 @@ public class MainActivity extends BaseActivity {
 
   @Icicle Class<? extends Fragment> currentFragment;
 
+  private GestureDetector gestureDetector;
   private ActionBarDrawerToggle drawerToggle;
   private Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
 
@@ -92,6 +97,9 @@ public class MainActivity extends BaseActivity {
     if (savedInstanceState == null) {
       navigateToFragment(CasualFragment.class);
     }
+
+    gestureDetector = new GestureDetector(this, new PullDownGestureDetector());
+    container.setOnTouchListener(this);
   }
 
   @Override protected void onResume() {
@@ -104,14 +112,12 @@ public class MainActivity extends BaseActivity {
     bus.unregister(this);
   }
 
-  @Override
-  public void onConfigurationChanged(Configuration newConfig) {
+  @Override public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     drawerToggle.onConfigurationChanged(newConfig);
   }
 
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
     // Pass the event to ActionBarDrawerToggle, if it returns
     // true, then it has handled the app icon touch event
     if (drawerToggle.onOptionsItemSelected(item)) {
@@ -122,11 +128,16 @@ public class MainActivity extends BaseActivity {
     return super.onOptionsItemSelected(item);
   }
 
-  @Override
-  protected void onPostCreate(Bundle savedInstanceState) {
+  @Override protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
     // Sync the toggle state after onRestoreInstanceState has occurred.
     drawerToggle.syncState();
+  }
+
+  @DebugLog
+  @Override public boolean onTouch(View v, MotionEvent event) {
+    gestureDetector.onTouchEvent(event);
+    return false;
   }
 
   @Subscribe public void onActionbarTitleChange(ActionBarTitleEvent event) {
@@ -186,8 +197,27 @@ public class MainActivity extends BaseActivity {
           drawerLayout.openDrawer(Gravity.START);
           Toast.makeText(MainActivity.this, R.string.drawer_intro_text, LENGTH_LONG).show();
         }
-      }, TimeUnit.MILLISECONDS.toMillis(500));
+      }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);
+    }
+  }
+
+  static class PullDownGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    @DebugLog
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+      return super.onFling(e1, e2, velocityX, velocityY);
+    }
+
+    @DebugLog
+    @Override public boolean onDown(MotionEvent e) {
+      return super.onDown(e);
+    }
+
+    @DebugLog
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+      return super.onScroll(e1, e2, distanceX, distanceY);
     }
   }
 }
