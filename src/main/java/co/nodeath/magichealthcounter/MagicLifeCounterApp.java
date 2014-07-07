@@ -3,6 +3,8 @@ package co.nodeath.magichealthcounter;
 import android.app.Application;
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
+
 import co.nodeath.magichealthcounter.ui.ActivityHierarchyServer;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,11 +25,11 @@ public class MagicLifeCounterApp extends Application {
   public void onCreate() {
     super.onCreate();
 
-    // Logging Setup
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());
     } else {
-      // Place Prod Logging here
+      Crashlytics.start(this);
+      Timber.plant(new CrashlyticsTree());
     }
 
     buildObjectGraphAndInject();

@@ -32,3 +32,4 @@ gradle.properties
 /.idea/workspace.xml
 .DS_Store
 .directory
+crashlytics.properties
