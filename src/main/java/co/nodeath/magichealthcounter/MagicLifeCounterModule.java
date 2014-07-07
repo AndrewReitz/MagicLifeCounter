@@ -35,12 +35,7 @@ public final class MagicLifeCounterModule {
     this.app = app;
   }
 
-  /**
-   * Allow the app context to be injected but require that it be annotated with
-   * {@link ForApplication}
-   * to explicitly differentiate it from an activity context.
-   */
-  @Provides @Singleton @ForApplication Application provideApplication() {
+  @Provides @Singleton Application provideApplication() {
     return app;
   }
 

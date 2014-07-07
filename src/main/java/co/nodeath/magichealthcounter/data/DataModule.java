@@ -8,7 +8,6 @@ import com.inkapplications.preferences.BooleanPreference;
 
 import javax.inject.Singleton;
 
-import co.nodeath.magichealthcounter.ForApplication;
 import dagger.Module;
 import dagger.Provides;
 
@@ -19,7 +18,7 @@ import dagger.Provides;
 public final class DataModule {
   private static final boolean DEFAULT_SEEN_NAVIGATION_DRAWER = false;
 
-  @Provides @Singleton SharedPreferences provideSharedPreferences(@ForApplication Application app) {
+  @Provides @Singleton SharedPreferences provideSharedPreferences(Application app) {
     return PreferenceManager.getDefaultSharedPreferences(app);
   }
 

@@ -13,25 +13,20 @@ import dagger.Provides;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 @Module(
-        injects = {
-                MainActivity.class
-        },
-        addsTo = MagicLifeCounterModule.class,
-        library = true
+    injects = {
+        MainActivity.class
+    },
+    addsTo = MagicLifeCounterModule.class,
+    library = true
 )
 public class ActivityModule {
-    private final Activity activity;
+  private final Activity activity;
 
-    public ActivityModule(Activity activity) {
-        this.activity = checkNotNull(activity);
-    }
+  public ActivityModule(Activity activity) {
+    this.activity = checkNotNull(activity);
+  }
 
-    /**
-     * Allow the activity context to be injected but require that it be annotated with
-     * {@link ForActivity } to explicitly
-     * differentiate it from application context.
-     */
-    @Provides @Singleton @ForActivity Context provideActivityContext() {
-        return activity;
-    }
+  @Provides @Singleton Activity provideActivityContext() {
+    return activity;
+  }
 }
