@@ -47,10 +47,18 @@
             tools:ignore="HardcodedText"/>
 
         <TextView
+            android:id="@+id/you"
+            android:visibility="gone"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignParentLeft="true"
+            android:text="You"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
             android:id="@+id/them_poison_counter"
             android:visibility="gone"
-            android:layout_alignParentStart="true"
             style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignParentRight="true"
             android:text="0"
             tools:ignore="HardcodedText"/>
 
@@ -67,10 +75,20 @@
             tools:ignore="HardcodedText"/>
 
         <TextView
+            android:id="@+id/me"
+            android:visibility="gone"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignBaseline="@id/me_score"
+            android:text="Me"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
             android:id="@+id/me_poison_counter"
             android:visibility="gone"
-            android:layout_alignParentEnd="true"
             style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignBaseline="@id/me_score"
+            android:layout_alignParentRight="true"
             android:text="0"
             tools:ignore="HardcodedText"/>
 
