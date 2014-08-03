@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.GestureDetector;
@@ -40,7 +39,7 @@ import icepick.Icicle;
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
-public class MainActivity extends BaseActivity implements View.OnTouchListener {
+public final class MainActivity extends BaseActivity implements View.OnTouchListener {
 
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
@@ -97,9 +96,6 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener {
     if (savedInstanceState == null) {
       navigateToFragment(CasualFragment.class);
     }
-
-    gestureDetector = new GestureDetector(this, new PullDownGestureDetector());
-    container.setOnTouchListener(this);
   }
 
   @Override protected void onResume() {
@@ -144,6 +140,15 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener {
     actionbarTitle = event.title;
     //noinspection ConstantConditions
     getActionBar().setTitle(actionbarTitle);
+  }
+
+  private void hideActionbarAfterDelay() {
+    drawerLayout.postDelayed(new Runnable() {
+      @Override public void run() {
+        //noinspection ConstantConditions
+        getActionBar().hide();
+      }
+    }, TimeUnit.SECONDS.toMillis(1));
   }
 
   private void navigateToFragment(Class<? extends Fragment> fragmentClass) {
@@ -195,29 +200,10 @@ public class MainActivity extends BaseActivity implements View.OnTouchListener {
       drawerLayout.postDelayed(new Runnable() {
         @Override public void run() {
           drawerLayout.openDrawer(Gravity.START);
-          Toast.makeText(MainActivity.this, R.string.drawer_intro_text, LENGTH_LONG).show();
+          Toast.makeText(MainActivity.this, R.string.drawer_intro_text, LENGTH_LONG). show();
         }
       }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);
-    }
-  }
-
-  static class PullDownGestureDetector extends GestureDetector.SimpleOnGestureListener {
-    @DebugLog
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-      return super.onFling(e1, e2, velocityX, velocityY);
-    }
-
-    @DebugLog
-    @Override public boolean onDown(MotionEvent e) {
-      return super.onDown(e);
-    }
-
-    @DebugLog
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-      return super.onScroll(e1, e2, distanceX, distanceY);
     }
   }
 }
