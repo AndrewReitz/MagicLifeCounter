@@ -2,6 +2,7 @@ package co.nodeath.magichealthcounter;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.StrictMode;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -27,6 +28,14 @@ public class MagicLifeCounterApp extends Application {
 
     if (BuildConfig.DEBUG) {
       Timber.plant(new Timber.DebugTree());
+      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+          .detectAll()
+          .penaltyDeath()
+          .build());
+      StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+          .detectAll()
+          .penaltyDeath()
+          .build());
     } else {
       Crashlytics.start(this);
       Timber.plant(new CrashlyticsTree());
