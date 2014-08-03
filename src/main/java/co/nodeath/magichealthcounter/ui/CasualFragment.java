@@ -1,5 +1,6 @@
 package co.nodeath.magichealthcounter.ui;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,10 @@ public final class CasualFragment extends TwoPlayerFragment {
     ButterKnife.inject(this, view);
     MagicLifeCounterApp.get(getActivity()).inject(this);
 
-    ButterKnife.apply(themViews, flip180);
+    if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE) {
+      ButterKnife.apply(themViews, flip180);
+    }
+
     ButterKnife.apply(scoreViews, setStandardLife);
     ButterKnife.apply(poisonCounters, setZero);
 

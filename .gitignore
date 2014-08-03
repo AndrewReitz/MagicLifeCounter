@@ -33,3 +33,4 @@ gradle.properties
 .DS_Store
 .directory
 crashlytics.properties
+crashlytics-build.properties

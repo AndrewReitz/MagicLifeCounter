@@ -8,5 +8,6 @@
     <dimen name="default_layout_margin_half">8dp</dimen>
     <dimen name="default_layout_margin_quarter">4dp</dimen>
     <dimen name="main_text_size">50sp</dimen>
+    <dimen name="secondary_text_size">25sp</dimen>
 
 </resources>
