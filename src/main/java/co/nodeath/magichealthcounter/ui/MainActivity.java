@@ -6,11 +6,9 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,13 +31,12 @@ import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
-import hugo.weaving.DebugLog;
 import icepick.Icicle;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
-public final class MainActivity extends BaseActivity implements View.OnTouchListener {
+public final class MainActivity extends BaseActivity {
 
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
@@ -54,7 +51,6 @@ public final class MainActivity extends BaseActivity implements View.OnTouchList
 
   @Icicle Class<? extends Fragment> currentFragment;
 
-  private GestureDetector gestureDetector;
   private ActionBarDrawerToggle drawerToggle;
   private Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
 
@@ -128,12 +124,6 @@ public final class MainActivity extends BaseActivity implements View.OnTouchList
     super.onPostCreate(savedInstanceState);
     // Sync the toggle state after onRestoreInstanceState has occurred.
     drawerToggle.syncState();
-  }
-
-  @DebugLog
-  @Override public boolean onTouch(View v, MotionEvent event) {
-    gestureDetector.onTouchEvent(event);
-    return false;
   }
 
   @Subscribe public void onActionbarTitleChange(ActionBarTitleEvent event) {
