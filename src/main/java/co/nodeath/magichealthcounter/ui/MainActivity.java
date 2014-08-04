@@ -80,7 +80,7 @@ public final class MainActivity extends BaseActivity {
     getLayoutInflater().inflate(R.layout.activity_main, container);
 
     ViewGroup drawer = findById(this, R.id.navigation_drawer);
-    LayoutInflater.from(this).inflate(R.layout.drawer_layout, drawer);
+    LayoutInflater.from(this).inflate(R.layout.drawer_navigation, drawer);
     ButterKnife.inject(this);
     MagicLifeCounterApp.get(this).inject(this);
 
