@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
 
 public final class CasualFragment extends TwoPlayerFragment {
 

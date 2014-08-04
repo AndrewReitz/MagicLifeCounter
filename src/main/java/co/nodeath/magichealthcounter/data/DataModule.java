@@ -17,6 +17,7 @@ import dagger.Provides;
 )
 public final class DataModule {
   private static final boolean DEFAULT_SEEN_NAVIGATION_DRAWER = false;
+  private static final boolean DEFAULT_SEEN_TRACKER_DRAWER = false;
 
   @Provides @Singleton SharedPreferences provideSharedPreferences(Application app) {
     return PreferenceManager.getDefaultSharedPreferences(app);
@@ -26,6 +27,13 @@ public final class DataModule {
   BooleanPreference provideSeenNavDrawer(SharedPreferences sharedPreferences) {
     return new BooleanPreference(
         sharedPreferences, "seen_navigation_drawer", DEFAULT_SEEN_NAVIGATION_DRAWER
+    );
+  }
+
+  @Provides @Singleton @SeenTrackerDrawer
+  BooleanPreference provideSeenTrackerDrawer(SharedPreferences sharedPreferences) {
+    return new BooleanPreference(
+        sharedPreferences, "seen_tracker_drawer", DEFAULT_SEEN_TRACKER_DRAWER
     );
   }
 }

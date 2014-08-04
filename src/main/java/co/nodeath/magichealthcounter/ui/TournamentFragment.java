@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.inkapplications.preferences.BooleanPreference;
 import com.squareup.otto.Bus;
 
 import java.util.List;
@@ -16,12 +17,18 @@ import butterknife.ButterKnife;
 import butterknife.InjectViews;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.data.SeenTrackerDrawer;
+import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
+import co.nodeath.magichealthcounter.ui.event.TrackerDrawerVisibilityEvent;
+
+import static co.nodeath.magichealthcounter.ui.event.TrackerDrawerVisibilityEvent.TrackerDrawerVisibility.SHOW;
 
 public final class TournamentFragment extends TwoPlayerFragment {
 
   @Inject @Standard ButterKnife.Action<TextView> setStandardLife;
   @Inject @Zero ButterKnife.Action<TextView> setZero;
   @Inject @Show ButterKnife.Action<View> showViews;
+  @Inject @SeenTrackerDrawer BooleanPreference seenTrackerDrawer;
   @Inject Bus bus;
 
   @InjectViews({R.id.me, R.id.you}) List<View> headers;
@@ -40,6 +47,11 @@ public final class TournamentFragment extends TwoPlayerFragment {
     ButterKnife.apply(scoreViews, setStandardLife);
     ButterKnife.apply(poisonCounters, setZero);
     ButterKnife.apply(headers, showViews);
+
+    if (!seenTrackerDrawer.get()) {
+      bus.post(new TrackerDrawerVisibilityEvent(SHOW));
+      seenTrackerDrawer.set(true);
+    }
 
     return view;
   }

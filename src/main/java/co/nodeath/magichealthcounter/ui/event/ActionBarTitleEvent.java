@@ -1,4 +1,4 @@
-package co.nodeath.magichealthcounter.ui;
+package co.nodeath.magichealthcounter.ui.event;
 
 public class ActionBarTitleEvent {
   public final String title;

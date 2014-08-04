@@ -17,4 +17,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         />
+
+    <!-- Score Tracker Drawer -->
+    <FrameLayout
+        android:id="@+id/score_tracker_drawer"
+        android:layout_width="290dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        />
 </android.support.v4.widget.DrawerLayout>

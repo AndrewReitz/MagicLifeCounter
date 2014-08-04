@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,8 @@ import butterknife.OnClick;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
+import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
+import co.nodeath.magichealthcounter.ui.event.TrackerDrawerVisibilityEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
 import icepick.Icicle;
 
@@ -48,6 +51,8 @@ public final class MainActivity extends BaseActivity {
   @InjectView(R.id.nav_drawer_casual) TextView casual;
   @InjectView(R.id.nav_drawer_multi_player) TextView multiplayer;
   @InjectView(R.id.nav_drawer_tournament) TextView tournament;
+  @InjectView(R.id.score_tracker_drawer) ViewGroup trackerDrawerContainer;
+  @InjectView(R.id.score_tracker) ListView trackerList;
 
   @Icicle Class<? extends Fragment> currentFragment;
 
@@ -71,16 +76,17 @@ public final class MainActivity extends BaseActivity {
     drawerLayout.closeDrawers();
   }
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     MagicLifeCounterApp app = MagicLifeCounterApp.get(this);
     ViewGroup container = appContainer.get(this, app);
     getLayoutInflater().inflate(R.layout.activity_main, container);
 
-    ViewGroup drawer = findById(this, R.id.navigation_drawer);
-    LayoutInflater.from(this).inflate(R.layout.drawer_navigation, drawer);
+    ViewGroup leftDrawer = findById(this, R.id.navigation_drawer);
+    LayoutInflater.from(this).inflate(R.layout.drawer_navigation, leftDrawer);
+    ViewGroup rightDrawer = findById(this, R.id.score_tracker_drawer);
+    LayoutInflater.from(this).inflate(R.layout.drawer_score_tracking, rightDrawer);
     ButterKnife.inject(this);
     MagicLifeCounterApp.get(this).inject(this);
 
@@ -132,13 +138,27 @@ public final class MainActivity extends BaseActivity {
     getActionBar().setTitle(actionbarTitle);
   }
 
-  private void hideActionbarAfterDelay() {
-    drawerLayout.postDelayed(new Runnable() {
-      @Override public void run() {
-        //noinspection ConstantConditions
-        getActionBar().hide();
+  @Subscribe public void onTrackerDrawerVisibilityEvent(TrackerDrawerVisibilityEvent event) {
+    if (currentFragment.getClass().equals(TournamentFragment.class)) {
+      switch (event.visibility) {
+        case HIDE:
+          showTrackerDrawer();
+          break;
+        case SHOW:
+          hideTrackerDrawer();
+          break;
+        default:
+          throw new RuntimeException("Unknown event type");
       }
-    }, TimeUnit.SECONDS.toMillis(1));
+    }
+  }
+
+  private void showTrackerDrawer() {
+    drawerLayout.openDrawer(Gravity.END);
+  }
+
+  private void hideTrackerDrawer() {
+    drawerLayout.closeDrawer(Gravity.END);
   }
 
   private void navigateToFragment(Class<? extends Fragment> fragmentClass) {
@@ -180,6 +200,7 @@ public final class MainActivity extends BaseActivity {
 
     drawerLayout.setDrawerListener(drawerToggle);
     drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.END);
 
     //noinspection ConstantConditions
     actionBar.setDisplayHomeAsUpEnabled(true);
