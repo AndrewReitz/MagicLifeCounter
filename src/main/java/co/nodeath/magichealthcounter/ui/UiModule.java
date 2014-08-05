@@ -1,5 +1,7 @@
 package co.nodeath.magichealthcounter.ui;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +22,10 @@ public class UiModule {
 
   @Provides @Singleton ActivityHierarchyServer provideActivityHierarchyServer() {
     return ActivityHierarchyServer.NONE;
+  }
+
+  @Provides @Singleton @Main Handler provideMainUiHandler() {
+    return new Handler(Looper.getMainLooper());
   }
 
   @Provides @Singleton @Flip180 ButterKnife.Action<View> provideFlipViews180DegreesAction() {

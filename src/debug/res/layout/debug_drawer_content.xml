@@ -152,6 +152,18 @@
         style="@style/Widget.MagicLifeCounter.DebugDrawer.RowWidget"
         />
 
+    <TextView
+        android:layout_gravity="start|end|center_vertical"
+        android:text="Score Tracker"
+        style="@style/Widget.MagicLifeCounter.DebugDrawer.RowTitle"
+        />
+
+    <Switch
+        android:id="@+id/debug_preference_score_tracker"
+        android:layout_gravity="start|center_vertical"
+        style="@style/Widget.MagicLifeCounter.DebugDrawer.RowWidget"
+        />
+
     <!-- BUILD INFORMATION SECTION -->
 
     <TextView

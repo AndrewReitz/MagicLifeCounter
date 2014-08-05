@@ -48,6 +48,7 @@ import co.nodeath.magichealthcounter.data.ScalpelEnabled;
 import co.nodeath.magichealthcounter.data.ScalpelWireframeEnabled;
 import co.nodeath.magichealthcounter.data.SeenDebugDrawer;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
+import co.nodeath.magichealthcounter.data.SeenTrackerDrawer;
 import co.nodeath.magichealthcounter.ui.AppContainer;
 import co.nodeath.magichealthcounter.util.Strings;
 import timber.log.Timber;
@@ -69,6 +70,7 @@ public class DebugAppContainer implements AppContainer {
   private final BooleanPreference scalpelWireframeEnabled;
   private final BooleanPreference seenDebugDrawer;
   private final BooleanPreference seenNavDrawer;
+  private final BooleanPreference seenScoreTracker;
 
   MagicLifeCounterApp app;
   Activity activity;
@@ -81,7 +83,8 @@ public class DebugAppContainer implements AppContainer {
       @ScalpelEnabled BooleanPreference scalpelEnabled,
       @ScalpelWireframeEnabled BooleanPreference scalpelWireframeEnabled,
       @SeenDebugDrawer BooleanPreference seenDebugDrawer,
-      @SeenNavDrawer BooleanPreference seenNavDrawer
+      @SeenNavDrawer BooleanPreference seenNavDrawer,
+      @SeenTrackerDrawer BooleanPreference seenScoreTracker
   ) {
     this.scalpelEnabled = scalpelEnabled;
     this.scalpelWireframeEnabled = scalpelWireframeEnabled;
@@ -90,6 +93,7 @@ public class DebugAppContainer implements AppContainer {
     this.pixelGridEnabled = pixelGridEnabled;
     this.pixelRatioEnabled = pixelRatioEnabled;
     this.seenNavDrawer = seenNavDrawer;
+    this.seenScoreTracker = seenScoreTracker;
   }
 
   @InjectView(R.id.debug_drawer_layout) DrawerLayout drawerLayout;
@@ -120,6 +124,7 @@ public class DebugAppContainer implements AppContainer {
   @InjectView(R.id.debug_device_api) TextView deviceApiView;
 
   @InjectView(R.id.debug_preference_nav_drawer) Switch prefSeenNavDrawer;
+  @InjectView(R.id.debug_preference_score_tracker) Switch prefSeenScoreTracker;
 
   @Override public ViewGroup get(final Activity activity, MagicLifeCounterApp app) {
     this.app = app;
@@ -244,8 +249,17 @@ public class DebugAppContainer implements AppContainer {
     prefSeenNavDrawer.setChecked(seenNav);
     prefSeenNavDrawer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Timber.d("Setting Seen Nav Drawer to " + isChecked);
+        Timber.d("Setting Seen Nav Drawer to %s", isChecked);
         seenNavDrawer.set(isChecked);
+      }
+    });
+
+    final boolean seenTracker = seenScoreTracker.get();
+    prefSeenScoreTracker.setChecked(seenTracker);
+    prefSeenScoreTracker.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        Timber.d("Setting Seen Score Tracker to %s", isChecked);
+        seenScoreTracker.set(isChecked);
       }
     });
   }

@@ -6,5 +6,5 @@ import java.lang.annotation.RetentionPolicy;
 import javax.inject.Qualifier;
 
 @Qualifier @Retention(RetentionPolicy.RUNTIME)
-public @interface Hide {
+public @interface Main {
 }

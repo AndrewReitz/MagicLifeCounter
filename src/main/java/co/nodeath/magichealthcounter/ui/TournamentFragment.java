@@ -1,6 +1,7 @@
 package co.nodeath.magichealthcounter.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import com.inkapplications.preferences.BooleanPreference;
 import com.squareup.otto.Bus;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -29,6 +31,7 @@ public final class TournamentFragment extends TwoPlayerFragment {
   @Inject @Zero ButterKnife.Action<TextView> setZero;
   @Inject @Show ButterKnife.Action<View> showViews;
   @Inject @SeenTrackerDrawer BooleanPreference seenTrackerDrawer;
+  @Inject @Main Handler handler;
   @Inject Bus bus;
 
   @InjectViews({R.id.me, R.id.you}) List<View> headers;
@@ -48,16 +51,23 @@ public final class TournamentFragment extends TwoPlayerFragment {
     ButterKnife.apply(poisonCounters, setZero);
     ButterKnife.apply(headers, showViews);
 
-    if (!seenTrackerDrawer.get()) {
-      bus.post(new TrackerDrawerVisibilityEvent(SHOW));
-      seenTrackerDrawer.set(true);
-    }
-
     return view;
   }
 
   @Override public void onResume() {
     super.onResume();
     bus.post(new ActionBarTitleEvent(getString(R.string.tournement)));
+  }
+
+  @Override public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    if (!seenTrackerDrawer.get()) {
+      handler.postDelayed(new Runnable() {
+        @Override public void run() {
+          bus.post(new TrackerDrawerVisibilityEvent(SHOW));
+        }
+      }, TimeUnit.SECONDS.toMillis(1));
+      seenTrackerDrawer.set(true);
+    }
   }
 }

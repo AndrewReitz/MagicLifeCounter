@@ -139,13 +139,13 @@ public final class MainActivity extends BaseActivity {
   }
 
   @Subscribe public void onTrackerDrawerVisibilityEvent(TrackerDrawerVisibilityEvent event) {
-    if (currentFragment.getClass().equals(TournamentFragment.class)) {
+    if (currentFragment == TournamentFragment.class) {
       switch (event.visibility) {
         case HIDE:
-          showTrackerDrawer();
+          hideTrackerDrawer();
           break;
         case SHOW:
-          hideTrackerDrawer();
+          showTrackerDrawer();
           break;
         default:
           throw new RuntimeException("Unknown event type");
@@ -199,8 +199,8 @@ public final class MainActivity extends BaseActivity {
     };
 
     drawerLayout.setDrawerListener(drawerToggle);
-    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
-    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.END);
+    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_left, Gravity.START);
+    drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
 
     //noinspection ConstantConditions
     actionBar.setDisplayHomeAsUpEnabled(true);
