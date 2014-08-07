@@ -14,7 +14,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 @Module(
     injects = {
-        MainActivity.class
+        TournamentFragment.class
     },
     addsTo = MagicLifeCounterModule.class,
     library = true

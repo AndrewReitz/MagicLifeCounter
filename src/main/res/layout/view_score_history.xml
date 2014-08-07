@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<co.nodeath.magichealthcounter.ui.ScoreItemView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:columnCount="3">
+
+        <TextView
+            android:id="@+id/score_item_view"
+            android:gravity="start|end|center_vertical"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?android:textColorPrimary"
+            android:textStyle="bold"
+            android:text="Me:"/>
+
+        <TextView
+            android:gravity="end|center_vertical"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?android:textColorSecondary"
+            android:text="+5"/>
+
+        <TextView
+            android:gravity="left|center_vertical"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?android:textColorSecondary"
+            android:text="10:00:00 AM"/>
+    </GridLayout>
+
+</co.nodeath.magichealthcounter.ui.ScoreItemView>

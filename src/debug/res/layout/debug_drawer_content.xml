@@ -61,6 +61,7 @@
         android:id="@+id/debug_contextual_list"
         android:layout_columnSpan="2"
         android:layout_gravity="start|end"
+        android:orientation="horizontal"
         android:visibility="gone"
         />
 

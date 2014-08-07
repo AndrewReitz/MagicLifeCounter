@@ -13,5 +13,6 @@
     <string name="settings">Settings</string>
     <string name="clear">Clear</string>
     <string name="history">History</string>
+    <string name="first_seen_match_hstory_drawer">Match history available in this drawer</string>
 
 </resources>

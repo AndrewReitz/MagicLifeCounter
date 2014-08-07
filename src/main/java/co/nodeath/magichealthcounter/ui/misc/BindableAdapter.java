@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-/** From https://github.com/JakeWharton/u2020 */
 /** An implementation of {@link android.widget.BaseAdapter} which uses the new/bind pattern for its views. */
 public abstract class BindableAdapter<T> extends BaseAdapter {
     private final Context context;

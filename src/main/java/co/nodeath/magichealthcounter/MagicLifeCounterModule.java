@@ -24,7 +24,6 @@ import dagger.Provides;
     injects = {
         MagicLifeCounterApp.class,
         MainActivity.class,
-        TournamentFragment.class,
         CasualFragment.class
     }
 )

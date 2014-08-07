@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:textAppearanceLarge"
+        style="?android:listSeparatorTextViewStyle"
         android:text="@string/history"/>
 
     <ListView
@@ -21,6 +21,7 @@
         android:clipToPadding="true"/>
 
     <Button
+        android:id="@+id/score_tracker_clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/clear"/>

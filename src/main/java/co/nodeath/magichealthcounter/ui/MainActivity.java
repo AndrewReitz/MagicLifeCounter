@@ -32,7 +32,9 @@ import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
+import co.nodeath.magichealthcounter.ui.event.ClearScoreEvent;
 import co.nodeath.magichealthcounter.ui.event.TrackerDrawerVisibilityEvent;
+import co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
 import icepick.Icicle;
 
@@ -43,6 +45,7 @@ public final class MainActivity extends BaseActivity {
 
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
+  @Inject ScoreTrackerAdapter scoreTrackerAdapter;
   @Inject Bus bus;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
@@ -76,6 +79,10 @@ public final class MainActivity extends BaseActivity {
     drawerLayout.closeDrawers();
   }
 
+  @OnClick(R.id.score_tracker_clear) void scoreClear() {
+    scoreTrackerAdapter.clear();
+  }
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
@@ -91,6 +98,8 @@ public final class MainActivity extends BaseActivity {
     MagicLifeCounterApp.get(this).inject(this);
 
     setupNavigationDrawer();
+
+    trackerList.setAdapter(scoreTrackerAdapter);
 
     fragments.put(CasualFragment.class, CasualFragment.newInstance());
     fragments.put(TournamentFragment.class, TournamentFragment.newInstance());
@@ -153,6 +162,16 @@ public final class MainActivity extends BaseActivity {
     }
   }
 
+  @Subscribe public void onScoreUpdateEvent(UpdateScoreEvent event) {
+    if (currentFragment == TournamentFragment.class) {
+      scoreTrackerAdapter.addScoreEvent(event);
+    }
+  }
+
+  @Subscribe public void onClearScoreEvent(ClearScoreEvent event) {
+    scoreTrackerAdapter.clear();
+  }
+
   private void showTrackerDrawer() {
     drawerLayout.openDrawer(Gravity.END);
   }
@@ -211,7 +230,7 @@ public final class MainActivity extends BaseActivity {
       drawerLayout.postDelayed(new Runnable() {
         @Override public void run() {
           drawerLayout.openDrawer(Gravity.START);
-          Toast.makeText(MainActivity.this, R.string.drawer_intro_text, LENGTH_LONG). show();
+          Toast.makeText(MainActivity.this, R.string.drawer_intro_text, LENGTH_LONG).show();
         }
       }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);

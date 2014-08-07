@@ -146,6 +146,11 @@ public class DebugAppContainer implements AppContainer {
     content.setOnHierarchyChangeListener(HierarchyTreeChangeListener.wrap(contextualActions));
 
     drawerLayout.setDrawerShadow(R.drawable.debug_drawer_shadow, Gravity.END);
+    drawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+      @Override public void onDrawerOpened(View drawerView) {
+        refreshPreferences();
+      }
+    });
 
     // If you have not seen the debug drawer before, show it with a message
     if (!seenDebugDrawer.get()) {
@@ -262,6 +267,8 @@ public class DebugAppContainer implements AppContainer {
         seenScoreTracker.set(isChecked);
       }
     });
+
+    refreshPreferences();
   }
 
   private void setupBuildSection() {
@@ -298,6 +305,11 @@ public class DebugAppContainer implements AppContainer {
     } catch (Exception e) {
       throw new RuntimeException("Unable to apply animation speed.", e);
     }
+  }
+
+  private void refreshPreferences() {
+    prefSeenScoreTracker.setChecked(seenScoreTracker.get());
+    prefSeenNavDrawer.setChecked(seenNavDrawer.get());
   }
 
   private static String getDensityString(DisplayMetrics displayMetrics) {
