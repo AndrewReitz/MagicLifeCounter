@@ -51,6 +51,6 @@ public class ScoreTrackerAdapter extends BindableAdapter<UpdateScoreEvent> {
   }
 
   @Override public void bindView(UpdateScoreEvent item, int position, View view) {
-    ((ScoreItemView) view).bindTo(item.toString());
+    ((ScoreItemView) view).bindTo(item);
   }
 }

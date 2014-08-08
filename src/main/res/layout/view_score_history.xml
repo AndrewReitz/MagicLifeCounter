@@ -11,24 +11,25 @@
         android:columnCount="3">
 
         <TextView
-            android:id="@+id/score_item_view"
+            android:id="@+id/score_item_view_who"
+            android:gravity="start|end|center_vertical"
+            android:layout_marginRight="@dimen/default_layout_margin"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="?android:textColorPrimaryInverse"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/score_item_view_value"
             android:gravity="start|end|center_vertical"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="?android:textColorPrimary"
-            android:textStyle="bold"
-            android:text="Me:"/>
+            android:layout_marginRight="@dimen/default_layout_margin"
+            android:textColor="?android:textColorSecondary"/>
 
         <TextView
-            android:gravity="end|center_vertical"
+            android:id="@+id/score_item_view_time"
+            android:gravity="start|end|center_vertical"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="?android:textColorSecondary"
-            android:text="+5"/>
-
-        <TextView
-            android:gravity="left|center_vertical"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="?android:textColorSecondary"
-            android:text="10:00:00 AM"/>
+            android:textColor="?android:textColorSecondary"/>
     </GridLayout>
 
 </co.nodeath.magichealthcounter.ui.ScoreItemView>

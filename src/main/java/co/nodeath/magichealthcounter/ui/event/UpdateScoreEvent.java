@@ -15,6 +15,11 @@ public class UpdateScoreEvent {
     private Who(String value) {
       this.value = value;
     }
+
+
+    @Override public String toString() {
+      return value;
+    }
   }
 
   public enum Value {
@@ -27,6 +32,11 @@ public class UpdateScoreEvent {
 
     private Value(String value) {
       this.value = value;
+    }
+
+
+    @Override public String toString() {
+      return value;
     }
   }
 
@@ -43,11 +53,11 @@ public class UpdateScoreEvent {
     timeOccurred = Calendar.getInstance().getTime();
   }
 
-  public String getFormattedDate() {
+  public String getFormattedTime() {
     return TIME_FORMAT.format(timeOccurred);
   }
 
   @Override public String toString() {
-    return String.format("%s: %s %s", who.value, value.value, getFormattedDate());
+    return String.format("%s: %s %s", who.value, value.value, getFormattedTime());
   }
 }
