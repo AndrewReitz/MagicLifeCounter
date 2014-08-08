@@ -34,3 +34,4 @@ gradle.properties
 .directory
 crashlytics.properties
 crashlytics-build.properties
+release.keystore
