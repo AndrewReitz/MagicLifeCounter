@@ -185,6 +185,7 @@ public final class MainActivity extends BaseActivity {
 
     currentFragment = fragmentClass;
     getFragmentManager().beginTransaction()
+        .setCustomAnimations(R.animator.zoom_enter, R.animator.zoom_exit)
         .replace(R.id.content_frame, fragments.get(fragmentClass))
         .commit();
   }
