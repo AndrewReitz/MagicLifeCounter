@@ -4,6 +4,8 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.Settings;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -11,12 +13,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.collect.Maps;
 import com.inkapplications.preferences.BooleanPreference;
+import com.inkapplications.preferences.LongPreference;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -30,6 +35,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.data.ScreenTimeout;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
 import co.nodeath.magichealthcounter.ui.event.ClearScoreEvent;
@@ -38,14 +44,22 @@ import co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
 import icepick.Icicle;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
 public final class MainActivity extends BaseActivity {
 
+  /** Value to set the screen to after timeout has occured */
+  private static final int MIN_SCREEN_BRIGHTNESS = 25;
+
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
+  @Inject @ScreenTimeout LongPreference screenTimeout;
+  @Inject BrightnessManager brightnessManager;
   @Inject ScoreTrackerAdapter scoreTrackerAdapter;
+  @Inject @Main Handler mainThreadHandler;
   @Inject Bus bus;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
@@ -56,6 +70,7 @@ public final class MainActivity extends BaseActivity {
   @InjectView(R.id.nav_drawer_tournament) TextView tournament;
   @InjectView(R.id.score_tracker_drawer) ViewGroup trackerDrawerContainer;
   @InjectView(R.id.score_tracker) ListView trackerList;
+  @InjectView(R.id.screen_cover) View screenCover;
 
   @Icicle Class<? extends Fragment> currentFragment;
 
@@ -63,6 +78,14 @@ public final class MainActivity extends BaseActivity {
   private Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
 
   private String actionbarTitle = "";
+
+  /** Runnable that gets executed when the screen timeout has occurred */
+  private final Runnable screenTimeOutRunnable = new Runnable() {
+    @Override public void run() {
+      brightnessManager.setBrightness(MIN_SCREEN_BRIGHTNESS);
+      screenCover.setVisibility(VISIBLE);
+    }
+  };
 
   @OnClick(R.id.nav_drawer_casual) void casualClick() {
     navigateToFragment(CasualFragment.class);
@@ -83,6 +106,12 @@ public final class MainActivity extends BaseActivity {
     scoreTrackerAdapter.clear();
   }
 
+  @OnClick(R.id.screen_cover) void screenCoverTouched() {
+    screenCover.setVisibility(INVISIBLE);
+    brightnessManager.restoreBrightness();
+    startScreenTimeout();
+  }
+
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
@@ -95,7 +124,6 @@ public final class MainActivity extends BaseActivity {
     ViewGroup rightDrawer = findById(this, R.id.score_tracker_drawer);
     LayoutInflater.from(this).inflate(R.layout.drawer_score_tracking, rightDrawer);
     ButterKnife.inject(this);
-    MagicLifeCounterApp.get(this).inject(this);
 
     setupNavigationDrawer();
 
@@ -111,11 +139,14 @@ public final class MainActivity extends BaseActivity {
 
   @Override protected void onResume() {
     super.onResume();
+    startScreenTimeout();
     bus.register(this);
   }
 
   @Override protected void onPause() {
     super.onPause();
+    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
+    brightnessManager.restoreBrightness();
     bus.unregister(this);
   }
 
@@ -236,5 +267,9 @@ public final class MainActivity extends BaseActivity {
       }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);
     }
+  }
+
+  private void startScreenTimeout() {
+    mainThreadHandler.postDelayed(screenTimeOutRunnable, screenTimeout.get());
   }
 }

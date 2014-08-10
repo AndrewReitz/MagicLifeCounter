@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.inkapplications.preferences.BooleanPreference;
+import com.inkapplications.preferences.IntPreference;
+import com.inkapplications.preferences.LongPreference;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -18,6 +22,7 @@ import dagger.Provides;
 public final class DataModule {
   private static final boolean DEFAULT_SEEN_NAVIGATION_DRAWER = false;
   private static final boolean DEFAULT_SEEN_TRACKER_DRAWER = false;
+  private static final long DEFAULT_SCREEN_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
 
   @Provides @Singleton SharedPreferences provideSharedPreferences(Application app) {
     return PreferenceManager.getDefaultSharedPreferences(app);
@@ -34,6 +39,13 @@ public final class DataModule {
   BooleanPreference provideSeenTrackerDrawer(SharedPreferences sharedPreferences) {
     return new BooleanPreference(
         sharedPreferences, "seen_tracker_drawer", DEFAULT_SEEN_TRACKER_DRAWER
+    );
+  }
+
+  @Provides @Singleton @ScreenTimeout
+  LongPreference providesScreenTimeoutDuration(SharedPreferences sharedPreferences) {
+    return new LongPreference(
+        sharedPreferences, "screen_timeout", DEFAULT_SCREEN_TIMEOUT
     );
   }
 }

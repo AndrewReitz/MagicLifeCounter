@@ -18,6 +18,14 @@
         android:layout_gravity="start"
         />
 
+    <!-- Screen cover to show over content when screen is dimmed to capture touch events -->
+    <FrameLayout
+        android:id="@+id/screen_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:visibility="gone"/>
+
     <!-- Score Tracker Drawer -->
     <FrameLayout
         android:id="@+id/score_tracker_drawer"
