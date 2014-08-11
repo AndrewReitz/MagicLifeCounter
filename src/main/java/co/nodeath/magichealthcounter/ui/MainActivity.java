@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -13,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,8 +41,6 @@ import co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
 import icepick.Icicle;
 
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
@@ -70,7 +65,6 @@ public final class MainActivity extends BaseActivity {
   @InjectView(R.id.nav_drawer_tournament) TextView tournament;
   @InjectView(R.id.score_tracker_drawer) ViewGroup trackerDrawerContainer;
   @InjectView(R.id.score_tracker) ListView trackerList;
-  @InjectView(R.id.screen_cover) View screenCover;
 
   @Icicle Class<? extends Fragment> currentFragment;
 
@@ -83,37 +77,26 @@ public final class MainActivity extends BaseActivity {
   private final Runnable screenTimeOutRunnable = new Runnable() {
     @Override public void run() {
       brightnessManager.setBrightness(MIN_SCREEN_BRIGHTNESS);
-      screenCover.setVisibility(VISIBLE);
     }
   };
 
   @OnClick(R.id.nav_drawer_casual) void casualClick() {
     navigateToFragment(CasualFragment.class);
     drawerLayout.closeDrawers();
-    restartScreenTimeout();
   }
 
   @OnClick(R.id.nav_drawer_tournament) void tournamentClick() {
     navigateToFragment(TournamentFragment.class);
     drawerLayout.closeDrawers();
-    restartScreenTimeout();
   }
 
   @OnClick(R.id.nav_drawer_about) void aboutClick() {
     navigateToFragment(CasualFragment.class);
     drawerLayout.closeDrawers();
-    restartScreenTimeout();
   }
 
   @OnClick(R.id.score_tracker_clear) void scoreClear() {
     scoreTrackerAdapter.clear();
-    restartScreenTimeout();
-  }
-
-  @OnClick(R.id.screen_cover) void screenCoverTouched() {
-    screenCover.setVisibility(INVISIBLE);
-    brightnessManager.restoreBrightness();
-    restartScreenTimeout();
   }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +126,6 @@ public final class MainActivity extends BaseActivity {
 
   @Override protected void onResume() {
     super.onResume();
-    startScreenTimeout();
     bus.register(this);
   }
 
@@ -205,6 +187,13 @@ public final class MainActivity extends BaseActivity {
 
   @Subscribe public void onClearScoreEvent(ClearScoreEvent event) {
     scoreTrackerAdapter.clear();
+  }
+
+  @Override public void onUserInteraction() {
+    super.onUserInteraction();
+    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
+    brightnessManager.restoreBrightness();
+    mainThreadHandler.postDelayed(screenTimeOutRunnable, screenTimeout.get());
   }
 
   private void showTrackerDrawer() {
@@ -271,14 +260,5 @@ public final class MainActivity extends BaseActivity {
       }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);
     }
-  }
-
-  private void restartScreenTimeout() {
-    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
-    startScreenTimeout();
-  }
-
-  private void startScreenTimeout() {
-    mainThreadHandler.postDelayed(screenTimeOutRunnable, screenTimeout.get());
   }
 }

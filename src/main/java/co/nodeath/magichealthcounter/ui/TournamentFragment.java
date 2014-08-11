@@ -1,7 +1,6 @@
 package co.nodeath.magichealthcounter.ui;
 
 import android.app.Activity;
-import android.app.Application;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectViews;
-import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenTrackerDrawer;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
@@ -34,7 +32,6 @@ import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Value.MINU
 import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Value.MINUS_ONE;
 import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Value.PLUS_FIVE;
 import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Value.PLUS_ONE;
-import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Who;
 import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Who.ME;
 import static co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent.Who.YOU;
 
