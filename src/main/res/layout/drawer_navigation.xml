@@ -25,12 +25,6 @@
 
     <TextView
         android:id="@+id/nav_drawer_settings"
-        android:visibility="gone"
         style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
         android:text="@string/settings"/>
-
-    <TextView
-        android:id="@+id/nav_drawer_about"
-        style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
-        android:text="@string/about"/>
 </LinearLayout>

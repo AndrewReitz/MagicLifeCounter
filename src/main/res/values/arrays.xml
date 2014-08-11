@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preference_screen_timeout_entries">
+        <item>10 Seconds</item>
+        <item>30 Seconds</item>
+        <item>1 Minute</item>
+        <item>5 Minute</item>
+        <item>No Dim</item>
+    </string-array>
+
+    <!-- Time in Seconds -->
+    <string-array name="preference_screen_timeout_values">
+        <item>10</item>
+        <item>30</item>
+        <item>60</item>
+        <item>300</item>
+        <item>2147483647</item>
+    </string-array>
+</resources>

@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import com.inkapplications.preferences.BooleanPreference;
 import com.inkapplications.preferences.IntPreference;
 import com.inkapplications.preferences.LongPreference;
+import com.inkapplications.preferences.StringPreference;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +23,7 @@ import dagger.Provides;
 public final class DataModule {
   private static final boolean DEFAULT_SEEN_NAVIGATION_DRAWER = false;
   private static final boolean DEFAULT_SEEN_TRACKER_DRAWER = false;
-  private static final long DEFAULT_SCREEN_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
+  private static final String DEFAULT_SCREEN_TIMEOUT = "10"; /* 10 Seconds */
 
   @Provides @Singleton SharedPreferences provideSharedPreferences(Application app) {
     return PreferenceManager.getDefaultSharedPreferences(app);
@@ -43,8 +44,9 @@ public final class DataModule {
   }
 
   @Provides @Singleton @ScreenTimeout
-  LongPreference providesScreenTimeoutDuration(SharedPreferences sharedPreferences) {
-    return new LongPreference(
+  StringPreference providesScreenTimeoutDuration(SharedPreferences sharedPreferences) {
+    /* String in order to use list preference */
+    return new StringPreference(
         sharedPreferences, "screen_timeout", DEFAULT_SCREEN_TIMEOUT
     );
   }

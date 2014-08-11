@@ -13,5 +13,11 @@
     <string name="clear">Clear</string>
     <string name="history">History</string>
     <string name="first_seen_match_hstory_drawer">Match history available in this drawer</string>
+    <string name="screen_timeout">Screen Timeout</string>
+    <string name="no">No</string>
+    <string name="set">Set</string>
+    <string name="preference_screen_timeout_summary">Seconds Until Screen Dims</string>
+    <string name="preference_screen_timeout_title">Screen Dimming</string>
+    <string name="version">Version</string>
 
 </resources>

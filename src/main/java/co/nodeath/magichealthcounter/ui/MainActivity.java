@@ -18,7 +18,9 @@ import android.widget.Toast;
 
 import com.google.common.collect.Maps;
 import com.inkapplications.preferences.BooleanPreference;
+import com.inkapplications.preferences.IntPreference;
 import com.inkapplications.preferences.LongPreference;
+import com.inkapplications.preferences.StringPreference;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -51,27 +53,22 @@ public final class MainActivity extends BaseActivity {
 
   @Inject AppContainer appContainer;
   @Inject @SeenNavDrawer BooleanPreference seenNavDrawer;
-  @Inject @ScreenTimeout LongPreference screenTimeout;
+  @Inject @ScreenTimeout StringPreference screenTimeout;
   @Inject BrightnessManager brightnessManager;
   @Inject ScoreTrackerAdapter scoreTrackerAdapter;
   @Inject @Main Handler mainThreadHandler;
   @Inject Bus bus;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
-  @InjectView(R.id.navigation_drawer) ViewGroup navdrawerContainer;
-  @InjectView(R.id.nav_drawer_about) TextView about;
-  @InjectView(R.id.nav_drawer_casual) TextView casual;
-  @InjectView(R.id.nav_drawer_multi_player) TextView multiplayer;
-  @InjectView(R.id.nav_drawer_tournament) TextView tournament;
-  @InjectView(R.id.score_tracker_drawer) ViewGroup trackerDrawerContainer;
   @InjectView(R.id.score_tracker) ListView trackerList;
 
   @Icicle Class<? extends Fragment> currentFragment;
 
   private ActionBarDrawerToggle drawerToggle;
-  private Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
+  private final Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
 
   private String actionbarTitle = "";
+  private boolean shouldDimScreen = true;
 
   /** Runnable that gets executed when the screen timeout has occurred */
   private final Runnable screenTimeOutRunnable = new Runnable() {
@@ -90,8 +87,8 @@ public final class MainActivity extends BaseActivity {
     drawerLayout.closeDrawers();
   }
 
-  @OnClick(R.id.nav_drawer_about) void aboutClick() {
-    navigateToFragment(CasualFragment.class);
+  @OnClick(R.id.nav_drawer_settings) void settingsClick() {
+    navigateToFragment(SettingsFragment.class);
     drawerLayout.closeDrawers();
   }
 
@@ -118,6 +115,7 @@ public final class MainActivity extends BaseActivity {
 
     fragments.put(CasualFragment.class, CasualFragment.newInstance());
     fragments.put(TournamentFragment.class, TournamentFragment.newInstance());
+    fragments.put(SettingsFragment.class, SettingsFragment.newInstance());
 
     if (savedInstanceState == null) {
       navigateToFragment(CasualFragment.class);
@@ -126,13 +124,14 @@ public final class MainActivity extends BaseActivity {
 
   @Override protected void onResume() {
     super.onResume();
+    startScreenTimeOut();
     bus.register(this);
   }
 
   @Override protected void onPause() {
     super.onPause();
-    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
-    brightnessManager.restoreBrightness();
+    stopScreenTimeOut();
+    restoreScreenBrightness();
     bus.unregister(this);
   }
 
@@ -191,9 +190,9 @@ public final class MainActivity extends BaseActivity {
 
   @Override public void onUserInteraction() {
     super.onUserInteraction();
-    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
-    brightnessManager.restoreBrightness();
-    mainThreadHandler.postDelayed(screenTimeOutRunnable, screenTimeout.get());
+    stopScreenTimeOut();
+    restoreScreenBrightness();
+    startScreenTimeOut();
   }
 
   private void showTrackerDrawer() {
@@ -260,5 +259,23 @@ public final class MainActivity extends BaseActivity {
       }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);
     }
+  }
+
+  private void startScreenTimeOut() {
+    if (shouldDimScreen) {
+      mainThreadHandler.postDelayed(screenTimeOutRunnable,
+          TimeUnit.SECONDS.toMillis(
+              Integer.parseInt(screenTimeout.get())
+          )
+      );
+    }
+  }
+
+  private void stopScreenTimeOut() {
+    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
+  }
+
+  private void restoreScreenBrightness() {
+    brightnessManager.restoreBrightness();
   }
 }
