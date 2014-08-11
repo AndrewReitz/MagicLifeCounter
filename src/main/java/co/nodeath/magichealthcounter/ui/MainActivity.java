@@ -90,26 +90,30 @@ public final class MainActivity extends BaseActivity {
   @OnClick(R.id.nav_drawer_casual) void casualClick() {
     navigateToFragment(CasualFragment.class);
     drawerLayout.closeDrawers();
+    restartScreenTimeout();
   }
 
   @OnClick(R.id.nav_drawer_tournament) void tournamentClick() {
     navigateToFragment(TournamentFragment.class);
     drawerLayout.closeDrawers();
+    restartScreenTimeout();
   }
 
   @OnClick(R.id.nav_drawer_about) void aboutClick() {
     navigateToFragment(CasualFragment.class);
     drawerLayout.closeDrawers();
+    restartScreenTimeout();
   }
 
   @OnClick(R.id.score_tracker_clear) void scoreClear() {
     scoreTrackerAdapter.clear();
+    restartScreenTimeout();
   }
 
   @OnClick(R.id.screen_cover) void screenCoverTouched() {
     screenCover.setVisibility(INVISIBLE);
     brightnessManager.restoreBrightness();
-    startScreenTimeout();
+    restartScreenTimeout();
   }
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -267,6 +271,11 @@ public final class MainActivity extends BaseActivity {
       }, TimeUnit.MILLISECONDS.toMillis(500)); /* Half a second, but there's gotta be a better way*/
       seenNavDrawer.set(true);
     }
+  }
+
+  private void restartScreenTimeout() {
+    mainThreadHandler.removeCallbacks(screenTimeOutRunnable);
+    startScreenTimeout();
   }
 
   private void startScreenTimeout() {
