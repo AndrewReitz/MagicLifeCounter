@@ -4,14 +4,17 @@ import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
 import com.inkapplications.preferences.StringPreference;
+import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
 
 public class SettingsFragment extends PreferenceFragment {
 
+  @Inject Bus bus;
   @Inject @VersionName StringPreference versionName;
 
   public static SettingsFragment newInstance() {
@@ -26,7 +29,7 @@ public class SettingsFragment extends PreferenceFragment {
 
   @Override public void onResume() {
     super.onResume();
-
+    bus.post(new ActionBarTitleEvent(getString(R.string.settings)));
     findPreference(getString(R.string.pref_key_version)).setSummary(versionName.get());
   }
 }
