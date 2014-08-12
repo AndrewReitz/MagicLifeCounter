@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.StrictMode;
 
 import com.crashlytics.android.Crashlytics;
+import com.inkapplications.preferences.StringPreference;
 
 import co.nodeath.magichealthcounter.ui.ActivityHierarchyServer;
 
@@ -12,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
+import co.nodeath.magichealthcounter.ui.VersionName;
 import dagger.ObjectGraph;
 import hugo.weaving.DebugLog;
 import timber.log.Timber;

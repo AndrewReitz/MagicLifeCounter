@@ -15,6 +15,15 @@
     <PreferenceCategory
         android:title="About">
         <Preference
+            android:key="@string/pref_key_version"
             android:title="@string/version"/>
+
+        <Preference
+            android:title="@string/view_source"
+            android:summary="@string/view_source_summary">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/pieces029/MagicLifeCounter"/>
+        </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

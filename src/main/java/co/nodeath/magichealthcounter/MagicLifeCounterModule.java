@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 import co.nodeath.magichealthcounter.data.DataModule;
 import co.nodeath.magichealthcounter.ui.CasualFragment;
 import co.nodeath.magichealthcounter.ui.MainActivity;
+import co.nodeath.magichealthcounter.ui.SettingsFragment;
 import co.nodeath.magichealthcounter.ui.TournamentFragment;
 import co.nodeath.magichealthcounter.ui.UiModule;
 import dagger.Module;
@@ -23,7 +24,8 @@ import dagger.Provides;
     },
     injects = {
         MagicLifeCounterApp.class,
-        CasualFragment.class
+        CasualFragment.class,
+        SettingsFragment.class
     }
 )
 public final class MagicLifeCounterModule {

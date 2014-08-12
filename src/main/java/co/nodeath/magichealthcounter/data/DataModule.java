@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
+import co.nodeath.magichealthcounter.BuildConfig;
+import co.nodeath.magichealthcounter.ui.VersionName;
 import dagger.Module;
 import dagger.Provides;
 
@@ -49,5 +51,10 @@ public final class DataModule {
     return new StringPreference(
         sharedPreferences, "screen_timeout", DEFAULT_SCREEN_TIMEOUT
     );
+  }
+
+  @Provides @Singleton @VersionName
+  StringPreference providesVersionName(SharedPreferences sharedPreferences) {
+    return new StringPreference(sharedPreferences, "version_name", BuildConfig.VERSION_NAME);
   }
 }
