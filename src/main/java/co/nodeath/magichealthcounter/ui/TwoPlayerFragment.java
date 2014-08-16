@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.otto.Bus;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,12 +20,14 @@ import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.ui.event.ClearScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 import hugo.weaving.DebugLog;
 
 abstract class TwoPlayerFragment extends BaseFragment {
 
   @Inject FragmentManager fragmentManager;
+  @Inject Bus bus;
 
   @InjectViews({
       R.id.them_minus_1,
@@ -49,6 +53,8 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @InjectView(R.id.them_poison_counter) TextView themPoisonCounter;
   @InjectView(R.id.me_poison_counter) TextView mePoisonCounter;
 
+  private static final ClearScoreEvent ClearScoreEvent = new ClearScoreEvent();
+
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setHasOptionsMenu(true);
@@ -70,6 +76,11 @@ abstract class TwoPlayerFragment extends BaseFragment {
         break;
       case R.id.action_roll_die:
         new D20Dialog().show(fragmentManager, "D20");
+        break;
+      case R.id.raction_reset:
+        setText(themScore, 20);
+        setText(meScore, 20);
+        bus.post(ClearScoreEvent);
         break;
       default:
         throw new IllegalStateException("Unknown or unhandled menu id");
@@ -122,7 +133,11 @@ abstract class TwoPlayerFragment extends BaseFragment {
   void updateText(TextView textView, int value) {
     int currentVal = (int) textView.getTag();
     int result = currentVal + value;
-    textView.setText(String.valueOf(result));
-    textView.setTag(result);
+    setText(textView, result);
+  }
+
+  void setText(TextView textView, int value) {
+    textView.setText(String.valueOf(value));
+    textView.setTag(value);
   }
 }

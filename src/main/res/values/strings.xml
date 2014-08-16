@@ -29,5 +29,5 @@
     <string name="coin_flip">Coin Flip</string>
     <string name="heads">Heads</string>
     <string name="tails">Tails</string>
-    <string name="reset_life">Reset</string>
+    <string name="reset">Reset</string>
 </resources>
