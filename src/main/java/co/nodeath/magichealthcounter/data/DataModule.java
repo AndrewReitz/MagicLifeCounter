@@ -9,6 +9,7 @@ import com.inkapplications.preferences.IntPreference;
 import com.inkapplications.preferences.LongPreference;
 import com.inkapplications.preferences.StringPreference;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -56,5 +57,9 @@ public final class DataModule {
   @Provides @Singleton @VersionName
   StringPreference providesVersionName(SharedPreferences sharedPreferences) {
     return new StringPreference(sharedPreferences, "version_name", BuildConfig.VERSION_NAME);
+  }
+
+  @Provides @Singleton Random provideRandom() {
+    return new Random(System.currentTimeMillis());
   }
 }

@@ -1,6 +1,7 @@
 package co.nodeath.magichealthcounter;
 
 import android.app.Application;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.StrictMode;
 

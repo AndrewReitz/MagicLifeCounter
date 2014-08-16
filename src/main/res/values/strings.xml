@@ -22,5 +22,9 @@
     <string name="pref_key_version">pref_key_version</string>
     <string name="view_source">View Source</string>
     <string name="view_source_summary">Help make this app better! Report a bug or view the source on GitHub</string>
+    <string name="flip_coin">Flip Coin</string>
+    <string name="roll_d_twenty">Roll D20</string>
+    <string name="d20_roll">D20 Roll</string>
+    <string name="you_rolled">You rolled: %d</string>
 
 </resources>

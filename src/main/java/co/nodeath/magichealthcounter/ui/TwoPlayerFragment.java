@@ -1,12 +1,18 @@
 package co.nodeath.magichealthcounter.ui;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.InjectView;
 import butterknife.InjectViews;
@@ -16,6 +22,8 @@ import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 import hugo.weaving.DebugLog;
 
 abstract class TwoPlayerFragment extends BaseFragment {
+
+  @Inject FragmentManager fragmentManager;
 
   @InjectViews({
       R.id.them_minus_1,
@@ -41,9 +49,33 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @InjectView(R.id.them_poison_counter) TextView themPoisonCounter;
   @InjectView(R.id.me_poison_counter) TextView mePoisonCounter;
 
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
+
+  @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_main, container, false);
+  }
+
+  @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    inflater.inflate(R.menu.menu_magic, menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case R.id.action_flip_coin:
+        break;
+      case R.id.action_roll_die:
+        D20Dialog d20Dialog = new D20Dialog();
+        d20Dialog.show(fragmentManager, "D20");
+        break;
+      default:
+        throw new IllegalStateException("Unknown or unhandled menu id");
+    }
+
+    return true;
   }
 
   @DebugLog

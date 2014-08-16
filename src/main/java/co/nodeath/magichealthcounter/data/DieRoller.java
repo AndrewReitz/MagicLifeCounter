@@ -2,12 +2,14 @@ package co.nodeath.magichealthcounter.data;
 
 import java.util.Random;
 
+import javax.inject.Inject;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public final class DieRoller {
   private final Random random;
 
-  DieRoller(Random random) {
+  @Inject DieRoller(Random random) {
     this.random = checkNotNull(random);
   }
 

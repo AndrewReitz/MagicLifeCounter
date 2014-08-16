@@ -2,6 +2,8 @@ package co.nodeath.magichealthcounter.data;
 
 import java.util.Random;
 
+import javax.inject.Inject;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public final class CoinFlipper {
@@ -12,7 +14,7 @@ public final class CoinFlipper {
 
   private Random random;
 
-  CoinFlipper(Random random) {
+  @Inject CoinFlipper(Random random) {
     this.random = checkNotNull(random);
   }
 
