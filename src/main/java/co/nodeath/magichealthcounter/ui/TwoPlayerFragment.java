@@ -66,10 +66,10 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_flip_coin:
+        new CoinFlipDialog().show(fragmentManager, "coinflip");
         break;
       case R.id.action_roll_die:
-        D20Dialog d20Dialog = new D20Dialog();
-        d20Dialog.show(fragmentManager, "D20");
+        new D20Dialog().show(fragmentManager, "D20");
         break;
       default:
         throw new IllegalStateException("Unknown or unhandled menu id");

@@ -26,5 +26,8 @@
     <string name="roll_d_twenty">Roll D20</string>
     <string name="d20_roll">D20 Roll</string>
     <string name="you_rolled">You rolled: %d</string>
-
+    <string name="coin_flip">Coin Flip</string>
+    <string name="heads">Heads</string>
+    <string name="tails">Tails</string>
+    <string name="reset_life">Reset</string>
 </resources>

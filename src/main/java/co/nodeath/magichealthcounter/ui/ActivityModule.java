@@ -18,7 +18,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
         MainActivity.class,
         TournamentFragment.class,
         CasualFragment.class,
-        D20Dialog.class
+        D20Dialog.class,
+        CoinFlipDialog.class
     },
     addsTo = MagicLifeCounterModule.class,
     library = true
