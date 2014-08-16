@@ -9,7 +9,7 @@ import java.util.TreeSet;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
-public final class DieRollServiceTest {
+public final class DieRollerTest {
 
   private DieRoller dieRoller;
 

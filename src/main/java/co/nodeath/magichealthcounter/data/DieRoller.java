@@ -8,8 +8,7 @@ public final class DieRoller {
   private final Random random;
 
   DieRoller(Random random) {
-    checkNotNull(random);
-    this.random = random;
+    this.random = checkNotNull(random);
   }
 
   /** Return a random number between min and max inclusive */
