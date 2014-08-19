@@ -26,12 +26,14 @@ import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 import hugo.weaving.DebugLog;
 import icepick.Icicle;
 
+import static butterknife.ButterKnife.Action;
+
 abstract class TwoPlayerFragment extends BaseFragment {
 
-  @Inject @Standard ButterKnife.Action<TextView> setStandardLife;
-  @Inject @Zero ButterKnife.Action<TextView> setZero;
-  @Inject @Show ButterKnife.Action<View> showViews;
-  @Inject @Hide ButterKnife.Action<View> hideViews;
+  @Inject @Standard Action<TextView> setStandardLife;
+  @Inject @Zero Action<TextView> setZero;
+  @Inject @Show Action<View> showViews;
+  @Inject @Hide Action<View> hideViews;
   @Inject FragmentManager fragmentManager;
   @Inject Bus bus;
 
@@ -70,7 +72,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @InjectView(R.id.them_poison_counter) TextView themPoisonCounter;
   @InjectView(R.id.me_poison_counter) TextView mePoisonCounter;
 
-  @Icicle boolean showPoison = true;
+  @Icicle boolean showingPoison = false;
 
   private static final ClearScoreEvent ClearScoreEvent = new ClearScoreEvent();
 
@@ -100,10 +102,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
         new D20Dialog().show(fragmentManager, "D20");
         break;
       case R.id.action_poison:
-        poisonToggle.setTitle(getText(showPoison ? R.string.hide_poision_counters :
-            R.string.show_poision_counters));
-        ButterKnife.apply(poisonViews, showPoison ? showViews : hideViews);
-        showPoison = !showPoison;
+        togglePoisonCounters();
         break;
       case R.id.raction_reset:
         ButterKnife.apply(scoreViews, setStandardLife);
@@ -187,5 +186,19 @@ abstract class TwoPlayerFragment extends BaseFragment {
   void setText(TextView textView, int value) {
     textView.setText(String.valueOf(value));
     textView.setTag(value);
+  }
+
+  void togglePoisonCounters() {
+    if (showingPoison) {
+      setPoisonText(R.string.show_poision_counters, hideViews);
+    } else {
+      setPoisonText(R.string.hide_poision_counters, showViews);
+    }
+    showingPoison = !showingPoison;
+  }
+
+  void setPoisonText(int textId, Action<View> butterKnifeAction) {
+    poisonToggle.setTitle(getText(textId));
+    ButterKnife.apply(poisonViews, butterKnifeAction);
   }
 }
