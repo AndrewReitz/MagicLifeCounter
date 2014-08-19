@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
@@ -23,9 +24,14 @@ import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.ui.event.ClearScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 import hugo.weaving.DebugLog;
+import icepick.Icicle;
 
 abstract class TwoPlayerFragment extends BaseFragment {
 
+  @Inject @Standard ButterKnife.Action<TextView> setStandardLife;
+  @Inject @Zero ButterKnife.Action<TextView> setZero;
+  @Inject @Show ButterKnife.Action<View> showViews;
+  @Inject @Hide ButterKnife.Action<View> hideViews;
   @Inject FragmentManager fragmentManager;
   @Inject Bus bus;
 
@@ -35,7 +41,9 @@ abstract class TwoPlayerFragment extends BaseFragment {
       R.id.them_plus_1,
       R.id.them_plus_5,
       R.id.them_score,
-      R.id.them_poison_counter
+      R.id.them_poison_counter,
+      R.id.them_poison_minus,
+      R.id.them_poison_plus
   }) List<View> themViews;
 
   @InjectViews({
@@ -48,12 +56,25 @@ abstract class TwoPlayerFragment extends BaseFragment {
       R.id.me_score
   }) List<TextView> scoreViews;
 
+  @InjectViews({
+      R.id.me_poison_counter,
+      R.id.me_poison_minus,
+      R.id.me_poison_plus,
+      R.id.them_poison_counter,
+      R.id.them_poison_minus,
+      R.id.them_poison_plus
+  }) List<TextView> poisonViews;
+
   @InjectView(R.id.them_score) TextView themScore;
   @InjectView(R.id.me_score) TextView meScore;
   @InjectView(R.id.them_poison_counter) TextView themPoisonCounter;
   @InjectView(R.id.me_poison_counter) TextView mePoisonCounter;
 
+  @Icicle boolean showPoison = true;
+
   private static final ClearScoreEvent ClearScoreEvent = new ClearScoreEvent();
+
+  private MenuItem poisonToggle;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -67,6 +88,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.menu_magic, menu);
+    poisonToggle = menu.findItem(R.id.action_poison);
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,9 +99,15 @@ abstract class TwoPlayerFragment extends BaseFragment {
       case R.id.action_roll_die:
         new D20Dialog().show(fragmentManager, "D20");
         break;
+      case R.id.action_poison:
+        poisonToggle.setTitle(getText(showPoison ? R.string.hide_poision_counters :
+            R.string.show_poision_counters));
+        ButterKnife.apply(poisonViews, showPoison ? showViews : hideViews);
+        showPoison = !showPoison;
+        break;
       case R.id.raction_reset:
-        setText(themScore, 20);
-        setText(meScore, 20);
+        ButterKnife.apply(scoreViews, setStandardLife);
+        ButterKnife.apply(poisonCounters, setZero);
         bus.post(ClearScoreEvent);
         break;
       default:
@@ -127,6 +155,26 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @DebugLog
   @OnClick(R.id.me_plus_5) void mePlusFiveClick() {
     updateText(meScore, 5);
+  }
+
+  @DebugLog
+  @OnClick(R.id.them_poison_plus) void themPoisionPlus() {
+    updateText(themPoisonCounter, 1);
+  }
+
+  @DebugLog
+  @OnClick(R.id.them_poison_minus) void themPoisonMinus() {
+    updateText(themPoisonCounter, -1);
+  }
+
+  @DebugLog
+  @OnClick(R.id.me_poison_plus) void mePoisionPlus() {
+    updateText(mePoisonCounter, 1);
+  }
+
+  @DebugLog
+  @OnClick(R.id.me_poison_minus) void mePoisionMinus() {
+    updateText(mePoisonCounter, -1);
   }
 
   @DebugLog

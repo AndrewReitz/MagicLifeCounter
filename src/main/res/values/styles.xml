@@ -42,4 +42,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
+    <style name="Widget.MagicLifeCounter.PoisonButton" parent="android:Widget.Holo.Light.Button">
+        <item name="android:layout_width">@dimen/poison_button_size</item>
+        <item name="android:layout_height">@dimen/poison_button_size</item>
+    </style>
 </resources>

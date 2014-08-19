@@ -9,5 +9,6 @@
     <dimen name="default_layout_margin_quarter">4dp</dimen>
     <dimen name="main_text_size">50sp</dimen>
     <dimen name="secondary_text_size">25sp</dimen>
+    <dimen name="poison_button_size">40dp</dimen>
 
 </resources>

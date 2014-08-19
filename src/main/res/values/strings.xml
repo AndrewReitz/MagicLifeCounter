@@ -30,4 +30,8 @@
     <string name="heads">Heads</string>
     <string name="tails">Tails</string>
     <string name="reset">Reset</string>
+    <string name="show_poision_counters">Show Poison Counters</string>
+    <string name="hide_poision_counters">Hide Poison Counters</string>
+    <string name="me">Me</string>
+    <string name="you">You</string>
 </resources>

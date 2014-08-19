@@ -50,16 +50,36 @@
             android:id="@+id/you"
             android:visibility="gone"
             style="@style/Widget.MagicLifeCounter.SecondaryText"
-            android:layout_alignParentLeft="true"
-            android:text="You"
+            android:text="@string/you"/>
+
+        <Button
+            android:id="@+id/them_poison_plus"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="+"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
         <TextView
             android:id="@+id/them_poison_counter"
-            android:visibility="gone"
+            android:layout_toLeftOf="@id/them_poison_plus"
+            android:layout_toStartOf="@id/them_poison_plus"
             style="@style/Widget.MagicLifeCounter.SecondaryText"
-            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/them_poison_counter"
+            android:layout_marginRight="@dimen/default_layout_margin_half"
+            android:layout_marginLeft="@dimen/default_layout_margin_half"
             android:text="0"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/them_poison_minus"
+            android:layout_toLeftOf="@id/them_poison_counter"
+            android:layout_toStartOf="@id/them_poison_counter"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="-"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
     </RelativeLayout>
@@ -78,18 +98,39 @@
             android:id="@+id/me"
             android:visibility="gone"
             style="@style/Widget.MagicLifeCounter.SecondaryText"
-            android:layout_alignParentLeft="true"
             android:layout_alignBaseline="@id/me_score"
-            android:text="Me"
+            android:text="@string/me"/>
+
+        <Button
+            android:id="@+id/me_poison_plus"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="+"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/me_score"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
         <TextView
             android:id="@+id/me_poison_counter"
-            android:visibility="gone"
+            android:layout_toLeftOf="@id/me_poison_plus"
+            android:layout_toStartOf="@id/me_poison_plus"
             style="@style/Widget.MagicLifeCounter.SecondaryText"
-            android:layout_alignBaseline="@id/me_score"
-            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/me_poison_plus"
+            android:layout_marginRight="@dimen/default_layout_margin_half"
+            android:layout_marginLeft="@dimen/default_layout_margin_half"
             android:text="0"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_poison_minus"
+            android:layout_toLeftOf="@id/me_poison_counter"
+            android:layout_toStartOf="@id/me_poison_counter"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="-"
+            android:layout_alignBaseline="@id/me_score"
+            android:visibility="gone"
             tools:ignore="HardcodedText"/>
 
     </RelativeLayout>

@@ -21,6 +21,7 @@
             <TextView
                 android:id="@+id/you"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:visibility="invisible"
                 style="@style/Widget.MagicLifeCounter.SecondaryText"
                 android:text="You"
@@ -36,15 +37,38 @@
                 android:text="20"
                 tools:ignore="HardcodedText"/>
 
+            <Button
+                android:id="@+id/them_poison_minus"
+                android:layout_toRightOf="@id/them_score"
+                android:layout_toEndOf="@id/them_score"
+                android:layout_alignBaseline="@id/them_score"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:text="-"
+                android:visibility="visible"
+                tools:ignore="HardcodedText"/>
+
             <TextView
                 android:id="@+id/them_poison_counter"
-                android:visibility="gone"
-                style="@style/Widget.MagicLifeCounter.SecondaryText"
-                android:layout_toRightOf="@id/them_score"
+                android:layout_toRightOf="@id/them_poison_minus"
+                android:layout_toEndOf="@id/them_poison_minus"
                 android:layout_alignBaseline="@id/them_score"
-                android:paddingStart="@dimen/default_layout_padding_half"
+                style="@style/Widget.MagicLifeCounter.SecondaryText"
+                android:layout_marginRight="@dimen/default_layout_margin_half"
+                android:layout_marginLeft="@dimen/default_layout_margin_half"
                 android:text="0"
+                android:visibility="visible"
                 tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/them_poison_plus"
+                android:layout_toRightOf="@id/them_poison_counter"
+                android:layout_toEndOf="@id/them_poison_counter"
+                android:layout_alignBaseline="@id/them_score"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:text="+"
+                android:visibility="visible"
+                tools:ignore="HardcodedText"/>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -56,6 +80,7 @@
                 android:id="@+id/me"
                 android:visibility="invisible"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 style="@style/Widget.MagicLifeCounter.SecondaryText"
                 android:text="Me"
                 tools:ignore="HardcodedText"/>
@@ -70,16 +95,38 @@
                 android:text="20"
                 tools:ignore="HardcodedText"/>
 
+            <Button
+                android:id="@+id/me_poison_minus"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:layout_toRightOf="@id/me_score"
+                android:layout_toEndOf="@id/me_score"
+                android:layout_alignBaseline="@id/me_score"
+                android:text="-"
+                android:visibility="visible"
+                tools:ignore="HardcodedText"/>
+
             <TextView
                 android:id="@+id/me_poison_counter"
-                android:visibility="gone"
-                android:layout_alignParentEnd="true"
+                android:visibility="visible"
                 style="@style/Widget.MagicLifeCounter.SecondaryText"
-                android:layout_toRightOf="@id/me_score"
+                android:layout_toRightOf="@id/me_poison_minus"
+                android:layout_toEndOf="@id/me_poison_minus"
                 android:layout_alignBaseline="@id/me_score"
                 android:paddingStart="@dimen/default_layout_padding_half"
+                android:paddingEnd="@dimen/default_layout_padding_half"
                 android:text="0"
                 tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/me_poison_plus"
+                android:layout_toRightOf="@id/me_poison_counter"
+                android:layout_toEndOf="@id/me_poison_counter"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:text="+"
+                android:layout_alignBaseline="@id/me_score"
+                android:visibility="visible"
+                tools:ignore="HardcodedText"/>
+
         </RelativeLayout>
     </LinearLayout>
 
