@@ -157,7 +157,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
   }
 
   @DebugLog
-  @OnClick(R.id.them_poison_plus) void themPoisionPlus() {
+  @OnClick(R.id.them_poison_plus) void themPoisonPlus() {
     updateText(themPoisonCounter, 1);
   }
 
