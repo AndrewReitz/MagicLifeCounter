@@ -44,7 +44,7 @@
                 android:layout_alignBaseline="@id/them_score"
                 style="@style/Widget.MagicLifeCounter.PoisonButton"
                 android:text="-"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="HardcodedText"/>
 
             <TextView
@@ -56,7 +56,7 @@
                 android:layout_marginRight="@dimen/default_layout_margin_half"
                 android:layout_marginLeft="@dimen/default_layout_margin_half"
                 android:text="0"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="HardcodedText"/>
 
             <Button
@@ -66,7 +66,7 @@
                 android:layout_alignBaseline="@id/them_score"
                 style="@style/Widget.MagicLifeCounter.PoisonButton"
                 android:text="+"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="HardcodedText"/>
 
         </RelativeLayout>
@@ -102,12 +102,12 @@
                 android:layout_toEndOf="@id/me_score"
                 android:layout_alignBaseline="@id/me_score"
                 android:text="-"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="HardcodedText"/>
 
             <TextView
                 android:id="@+id/me_poison_counter"
-                android:visibility="visible"
+                android:visibility="gone"
                 style="@style/Widget.MagicLifeCounter.SecondaryText"
                 android:layout_toRightOf="@id/me_poison_minus"
                 android:layout_toEndOf="@id/me_poison_minus"
@@ -124,7 +124,7 @@
                 style="@style/Widget.MagicLifeCounter.PoisonButton"
                 android:text="+"
                 android:layout_alignBaseline="@id/me_score"
-                android:visibility="visible"
+                android:visibility="gone"
                 tools:ignore="HardcodedText"/>
 
         </RelativeLayout>
