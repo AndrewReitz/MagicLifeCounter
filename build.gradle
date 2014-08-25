@@ -32,7 +32,7 @@ repositories {
 dependencies {
   compile 'com.android.support:support-v4:20.+'
 
-  compile 'com.inkapplications:android-preferences:1.0.+'
+  compile 'com.inkapplications:android-preferences:1.1.+'
 
   compile 'com.google.guava:guava:17.0'
 
