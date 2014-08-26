@@ -2,9 +2,11 @@
 
     <style name="Theme.MagicLifeCounter" parent="android:Theme.Holo.Light">
         <!-- Place your theme settings here! -->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
 
     <style name="Theme.MagicLifeCounter.Dark" parent="android:Theme.Holo">
         <!-- Place your theme settings here! -->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
     </style>
 </resources>
