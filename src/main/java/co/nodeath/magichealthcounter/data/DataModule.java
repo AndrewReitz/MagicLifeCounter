@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.inkapplications.preferences.BooleanPreference;
+import com.inkapplications.preferences.EnumPreference;
 import com.inkapplications.preferences.IntPreference;
 import com.inkapplications.preferences.LongPreference;
 import com.inkapplications.preferences.StringPreference;
@@ -18,6 +19,8 @@ import co.nodeath.magichealthcounter.BuildConfig;
 import co.nodeath.magichealthcounter.ui.VersionName;
 import dagger.Module;
 import dagger.Provides;
+
+import static co.nodeath.magichealthcounter.BuildConfig.VERSION_NAME;
 
 @Module(
     complete = false,
@@ -47,7 +50,7 @@ public final class DataModule {
   }
 
   @Provides @Singleton @ScreenTimeout
-  StringPreference providesScreenTimeoutDuration(SharedPreferences sharedPreferences) {
+  StringPreference provideScreenTimeoutDuration(SharedPreferences sharedPreferences) {
     /* String in order to use list preference */
     return new StringPreference(
         sharedPreferences, "screen_timeout", DEFAULT_SCREEN_TIMEOUT
@@ -55,8 +58,13 @@ public final class DataModule {
   }
 
   @Provides @Singleton @VersionName
-  StringPreference providesVersionName(SharedPreferences sharedPreferences) {
-    return new StringPreference(sharedPreferences, "version_name", BuildConfig.VERSION_NAME);
+  StringPreference provideVersionName(SharedPreferences sharedPreferences) {
+    return new StringPreference(sharedPreferences, "version_name", VERSION_NAME);
+  }
+
+  @Provides @Singleton @DarkTheme
+  BooleanPreference provideTheme(SharedPreferences sharedPreferences) {
+    return new BooleanPreference(sharedPreferences, "use_dark_theme", false);
   }
 
   @Provides @Singleton Random provideRandom() {

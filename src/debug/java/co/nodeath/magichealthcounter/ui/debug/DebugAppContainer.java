@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inkapplications.preferences.BooleanPreference;
+import com.inkapplications.preferences.EnumPreference;
 import com.inkapplications.preferences.IntPreference;
 import com.jakewharton.madge.MadgeFrameLayout;
 import com.jakewharton.scalpel.ScalpelFrameLayout;

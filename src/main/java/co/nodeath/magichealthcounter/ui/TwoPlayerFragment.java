@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.inkapplications.preferences.BooleanPreference;
 import com.squareup.otto.Bus;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
 import co.nodeath.magichealthcounter.R;
+import co.nodeath.magichealthcounter.data.DarkTheme;
 import co.nodeath.magichealthcounter.ui.event.ClearScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseFragment;
 import hugo.weaving.DebugLog;
@@ -34,6 +36,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Inject @Zero Action<TextView> setZero;
   @Inject @Show Action<View> showViews;
   @Inject @Hide Action<View> hideViews;
+  @Inject @DarkTheme BooleanPreference darkTheme;
   @Inject FragmentManager fragmentManager;
   @Inject Bus bus;
 
@@ -91,6 +94,11 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.menu_magic, menu);
     poisonToggle = menu.findItem(R.id.action_poison);
+
+    if (darkTheme.get()) {
+      menu.findItem(R.id.action_flip_coin).setIcon(R.drawable.ic_action_coin_dark);
+      menu.findItem(R.id.action_roll_die).setIcon(R.drawable.ic_action_d20_dark);
+    }
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {

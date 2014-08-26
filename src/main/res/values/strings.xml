@@ -34,4 +34,7 @@
     <string name="hide_poision_counters">Hide Poison Counters</string>
     <string name="me">Me</string>
     <string name="you">You</string>
+    <string name="set_theme">Set Theme</string>
+    <string name="select_timeout">Select Timeout</string>
+    <string name="use_dark_theme">Use Dark Theme</string>
 </resources>

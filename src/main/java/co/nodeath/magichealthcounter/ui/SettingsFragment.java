@@ -1,6 +1,7 @@
 package co.nodeath.magichealthcounter.ui;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
 import com.inkapplications.preferences.StringPreference;
@@ -31,5 +32,11 @@ public class SettingsFragment extends PreferenceFragment {
     super.onResume();
     bus.post(new ActionBarTitleEvent(getString(R.string.settings)));
     findPreference(getString(R.string.pref_key_version)).setSummary(versionName.get());
+    findPreference("use_dark_theme").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+      @Override public boolean onPreferenceChange(Preference preference, Object newValue) {
+        getActivity().recreate();
+        return true;
+      }
+    });
   }
 }
