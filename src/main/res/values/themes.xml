@@ -1,7 +1,15 @@
 <resources>
 
     <style name="Theme.MagicLifeCounter" parent="android:Theme.Holo.Light">
-        <!-- Place your theme settings here! -->
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_magiclifecounter</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Magiclifecounter</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Magiclifecounter</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Magiclifecounter</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Magiclifecounter</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Magiclifecounter</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_magiclifecounter</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_magiclifecounter</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Magiclifecounter</item>
     </style>
 
     <style name="Theme.MagicLifeCounter.Dark" parent="android:Theme.Holo">

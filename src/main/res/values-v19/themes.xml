@@ -1,12 +1,12 @@
 <resources>
 
-    <style name="Theme.MagicLifeCounter" parent="android:Theme.Holo.Light">
-        <!-- Place your theme settings here! -->
+    <!--<style name="Theme.MagicLifeCounter" parent="android:Theme.Holo.Light">-->
+        <!--&lt;!&ndash; Place your theme settings here! &ndash;&gt;-->
         <!--<item name="android:windowTranslucentStatus">true</item>-->
-    </style>
+    <!--</style>-->
 
-    <style name="Theme.MagicLifeCounter.Dark" parent="android:Theme.Holo">
-        <!-- Place your theme settings here! -->
+    <!--<style name="Theme.MagicLifeCounter.Dark" parent="android:Theme.Holo">-->
+        <!--&lt;!&ndash; Place your theme settings here! &ndash;&gt;-->
         <!--<item name="android:windowTranslucentStatus">true</item>-->
-    </style>
+    <!--</style>-->
 </resources>
