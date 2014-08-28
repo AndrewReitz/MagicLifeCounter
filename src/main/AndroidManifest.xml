@@ -9,7 +9,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.MagicLifeCounter" >
+        android:theme="@style/Theme.MagicLifeCounter.Dark" >
         <activity
             android:name="co.nodeath.magichealthcounter.ui.MainActivity"
             android:label="@string/app_name" >

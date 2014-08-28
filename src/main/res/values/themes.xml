@@ -22,6 +22,14 @@
     </style>
 
     <style name="Theme.MagicLifeCounter.Dark" parent="android:Theme.Holo">
-        <!-- Place your theme settings here! -->
+        <item name="android:listChoiceIndicatorMultiple">@drawable/magiclifecounter_dark_btn_check_holo_dark</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/magiclifecounter_dark_btn_radio_holo_dark</item>
+        <item name="android:buttonStyle">@style/ButtonMagicLifeCounter_Dark</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonMagicLifeCounter_Dark</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/magiclifecounter_dark_list_selector_holo_dark</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/magiclifecounter_dark_activated_background_holo_dark</item>
+        <item name="android:fastScrollThumbDrawable">@drawable/magiclifecounter_dark_fastscroll_thumb_holo</item>
+
+        <!-- Actionbar -->
     </style>
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="MagicLifeCounter_Dark" parent="android:Theme.Holo">
+
+    <item name="android:listChoiceIndicatorMultiple">@drawable/magiclifecounter_dark_btn_check_holo_dark</item>
+
+    <item name="android:listChoiceIndicatorSingle">@drawable/magiclifecounter_dark_btn_radio_holo_dark</item>
+
+    <item name="android:buttonStyle">@style/ButtonMagicLifeCounter_Dark</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonMagicLifeCounter_Dark</item>
+
+    <item name="android:listChoiceBackgroundIndicator">@drawable/magiclifecounter_dark_list_selector_holo_dark</item>
+
+    <item name="android:activatedBackgroundIndicator">@drawable/magiclifecounter_dark_activated_background_holo_dark</item>
+
+    <item name="android:fastScrollThumbDrawable">@drawable/magiclifecounter_dark_fastscroll_thumb_holo</item>
+
+  </style>
+
+</resources>
