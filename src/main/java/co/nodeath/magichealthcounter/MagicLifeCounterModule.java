@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 
 import co.nodeath.magichealthcounter.data.DataModule;
 import co.nodeath.magichealthcounter.ui.CasualFragment;
+import co.nodeath.magichealthcounter.ui.CoinFlipDialog;
 import co.nodeath.magichealthcounter.ui.D20Dialog;
 import co.nodeath.magichealthcounter.ui.MainActivity;
 import co.nodeath.magichealthcounter.ui.SettingsFragment;
@@ -30,7 +31,9 @@ import timber.log.Timber;
     },
     injects = {
         MagicLifeCounterApp.class,
-        SettingsFragment.class
+        SettingsFragment.class,
+        D20Dialog.class,
+        CoinFlipDialog.class
     },
     library = true
 )
