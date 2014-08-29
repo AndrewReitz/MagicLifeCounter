@@ -30,11 +30,12 @@ repositories {
 }
 
 dependencies {
+  compile 'com.google.android.gms:play-services:5.2.+@aar'
   compile 'com.android.support:support-v4:20.+'
 
   compile 'com.inkapplications:android-preferences:1.1.+'
 
-  compile 'com.google.guava:guava:17.0'
+  compile 'com.google.guava:guava:18.0'
 
   compile 'com.intellij:annotations:12.0'
 
@@ -89,6 +90,7 @@ android {
 
     buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
     buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+    buildConfigField "String", "GA_TRACKING_ID", "\"${gaTrackingId}\""
   }
 
   signingConfigs {

@@ -3,4 +3,6 @@
 keystorePassword=ThisKeyIsNotSoSecret
 aliasKeyPassword=ThisKeyIsNotSoSecret
 storeFilePath=Path/To/Key/Store
-storeKeyAlias="MagicLifeCounter"
+storeKeyAlias=YourAliasHere
+
+gaTrackingId=xx-xxxxxx-x

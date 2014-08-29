@@ -13,13 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.common.collect.Maps;
 import com.inkapplications.preferences.BooleanPreference;
-import com.inkapplications.preferences.IntPreference;
-import com.inkapplications.preferences.LongPreference;
 import com.inkapplications.preferences.StringPreference;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
@@ -32,6 +29,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import co.nodeath.magichealthcounter.Analytics;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.ScreenTimeout;
@@ -58,6 +56,7 @@ public final class MainActivity extends BaseActivity {
   @Inject ScoreTrackerAdapter scoreTrackerAdapter;
   @Inject @Main Handler mainThreadHandler;
   @Inject Bus bus;
+  @Inject Analytics analytics;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
   @InjectView(R.id.score_tracker) ListView trackerList;
@@ -196,6 +195,7 @@ public final class MainActivity extends BaseActivity {
   }
 
   private void showTrackerDrawer() {
+    analytics.screen("Score Tracking Drawer");
     drawerLayout.openDrawer(Gravity.END);
   }
 

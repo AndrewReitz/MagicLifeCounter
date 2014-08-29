@@ -14,6 +14,7 @@ import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import co.nodeath.magichealthcounter.Analytics;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
@@ -25,6 +26,7 @@ public final class CasualFragment extends TwoPlayerFragment {
   @Inject @Standard ButterKnife.Action<TextView> setStandardLife;
   @Inject @Zero ButterKnife.Action<TextView> setZero;
   @Inject Bus bus;
+  @Inject Analytics analytics;
 
   public static CasualFragment newInstance() {
     return new CasualFragment();
@@ -48,6 +50,11 @@ public final class CasualFragment extends TwoPlayerFragment {
 
     ButterKnife.apply(scoreViews, setStandardLife);
     ButterKnife.apply(poisonCounters, setZero);
+  }
+
+  @Override public void onStart() {
+    super.onStart();
+    analytics.screen("Casual");
   }
 
   @Override public void onResume() {

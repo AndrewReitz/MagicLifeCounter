@@ -9,6 +9,7 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import co.nodeath.magichealthcounter.Analytics;
 import co.nodeath.magichealthcounter.MagicLifeCounterApp;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
@@ -17,6 +18,7 @@ public class SettingsFragment extends PreferenceFragment {
 
   @Inject Bus bus;
   @Inject @VersionName StringPreference versionName;
+  @Inject Analytics analytics;
 
   public static SettingsFragment newInstance() {
     return new SettingsFragment();
@@ -26,6 +28,12 @@ public class SettingsFragment extends PreferenceFragment {
     super.onCreate(savedInstanceState);
     MagicLifeCounterApp.get(getActivity()).inject(this);
     addPreferencesFromResource(R.xml.preferences);
+  }
+
+  @Override public void onStart() {
+    super.onStart();
+
+    analytics.screen("Settings");
   }
 
   @Override public void onResume() {

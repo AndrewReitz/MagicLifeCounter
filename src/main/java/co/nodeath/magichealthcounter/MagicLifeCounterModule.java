@@ -2,6 +2,8 @@ package co.nodeath.magichealthcounter;
 
 import android.app.Application;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Bus;
 
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +19,7 @@ import co.nodeath.magichealthcounter.ui.TournamentFragment;
 import co.nodeath.magichealthcounter.ui.UiModule;
 import dagger.Module;
 import dagger.Provides;
+import timber.log.Timber;
 
 @Module(
     includes = {
@@ -26,7 +29,8 @@ import dagger.Provides;
     injects = {
         MagicLifeCounterApp.class,
         SettingsFragment.class
-    }
+    },
+    library = true
 )
 public final class MagicLifeCounterModule {
   private final MagicLifeCounterApp app;
@@ -41,5 +45,14 @@ public final class MagicLifeCounterModule {
 
   @Provides @Singleton Bus provideBus() {
     return new Bus();
+  }
+
+  @Provides @Singleton Tracker provideTracker() {
+    GoogleAnalytics analytics = GoogleAnalytics.getInstance(app);
+    return analytics.newTracker(BuildConfig.GA_TRACKING_ID);
+  }
+
+  @Provides @Singleton Analytics provideAnalytics(Tracker tracker) {
+    return new Analytics.GoogleAnalytics(tracker);
   }
 }

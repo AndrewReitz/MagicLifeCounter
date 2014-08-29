@@ -19,6 +19,7 @@ import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.InjectViews;
+import co.nodeath.magichealthcounter.Analytics;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenTrackerDrawer;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
@@ -44,6 +45,7 @@ public final class TournamentFragment extends TwoPlayerFragment {
   @Inject @Main Handler handler;
   @Inject Activity activity;
   @Inject Bus bus;
+  @Inject Analytics analytics;
 
   @InjectViews({R.id.me, R.id.you}) List<View> headers;
 
@@ -58,6 +60,11 @@ public final class TournamentFragment extends TwoPlayerFragment {
     ButterKnife.inject(this, view);
 
     return view;
+  }
+
+  @Override public void onStart() {
+    super.onStart();
+    analytics.screen("Tournament");
   }
 
   @Override public void onResume() {
