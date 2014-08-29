@@ -1,0 +1,189 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/default_layout_padding">
+
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
+
+            <TextView
+                android:id="@+id/you"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:visibility="invisible"
+                style="@style/Widget.MagicLifeCounter.SecondaryText"
+                android:text="You"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/them_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Widget.MagicLifeCounter.MainText"
+                android:layout_centerInParent="true"
+                android:text="20"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/them_poison_minus"
+                android:layout_toRightOf="@id/them_score"
+                android:layout_toEndOf="@id/them_score"
+                android:layout_alignBaseline="@id/them_score"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:text="-"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/them_poison_counter"
+                android:layout_toRightOf="@id/them_poison_minus"
+                android:layout_toEndOf="@id/them_poison_minus"
+                android:layout_alignBaseline="@id/them_score"
+                style="@style/Widget.MagicLifeCounter.SecondaryText"
+                android:layout_marginRight="@dimen/default_layout_margin_half"
+                android:layout_marginLeft="@dimen/default_layout_margin_half"
+                android:text="0"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/them_poison_plus"
+                android:layout_toRightOf="@id/them_poison_counter"
+                android:layout_toEndOf="@id/them_poison_counter"
+                android:layout_alignBaseline="@id/them_score"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:text="+"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/me"
+                android:visibility="invisible"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                style="@style/Widget.MagicLifeCounter.SecondaryText"
+                android:text="Me"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/me_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                style="@style/Widget.MagicLifeCounter.MainText"
+                android:layout_centerInParent="true"
+                android:text="20"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/me_poison_minus"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:layout_toRightOf="@id/me_score"
+                android:layout_toEndOf="@id/me_score"
+                android:layout_alignBaseline="@id/me_score"
+                android:text="-"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:id="@+id/me_poison_counter"
+                android:visibility="gone"
+                style="@style/Widget.MagicLifeCounter.SecondaryText"
+                android:layout_toRightOf="@id/me_poison_minus"
+                android:layout_toEndOf="@id/me_poison_minus"
+                android:layout_alignBaseline="@id/me_score"
+                android:paddingStart="@dimen/default_layout_padding_half"
+                android:paddingEnd="@dimen/default_layout_padding_half"
+                android:text="0"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:id="@+id/me_poison_plus"
+                android:layout_toRightOf="@id/me_poison_counter"
+                android:layout_toEndOf="@id/me_poison_counter"
+                style="@style/Widget.MagicLifeCounter.PoisonButton"
+                android:text="+"
+                android:layout_alignBaseline="@id/me_score"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
+
+        <Button
+            android:id="@+id/them_plus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+5"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/them_minus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-5"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_plus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+5"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_minus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-5"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
+
+        <Button
+            android:id="@+id/them_plus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+1"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/them_minus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-1"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_plus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+1"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_minus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-1"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+</LinearLayout>

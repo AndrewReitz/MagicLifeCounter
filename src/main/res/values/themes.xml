@@ -1,0 +1,44 @@
+<resources>
+
+    <style name="Theme.MagicLifeCounter" parent="android:Theme.Holo.Light">
+        <item name="android:listChoiceIndicatorMultiple">@drawable/magiclifecounter_btn_check_holo_light</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/magiclifecounter_btn_radio_holo_light</item>
+        <item name="android:buttonStyle">@style/ButtonMagicLifeCounter</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonMagicLifeCounter</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/magiclifecounter_list_selector_holo_light</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/magiclifecounter_activated_background_holo_light</item>
+        <item name="android:fastScrollThumbDrawable">@drawable/magiclifecounter_fastscroll_thumb_holo</item>
+
+        <!-- Actionbar -->
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_magiclifecounter</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Magiclifecounter</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Magiclifecounter</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Magiclifecounter</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Magiclifecounter</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Magiclifecounter</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_magiclifecounter</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_magiclifecounter</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Magiclifecounter</item>
+    </style>
+
+    <style name="Theme.MagicLifeCounter.Dark" parent="android:Theme.Holo">
+        <item name="android:listChoiceIndicatorMultiple">@drawable/magiclifecounter_dark_btn_check_holo_dark</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/magiclifecounter_dark_btn_radio_holo_dark</item>
+        <item name="android:buttonStyle">@style/ButtonMagicLifeCounter_Dark</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonMagicLifeCounter_Dark</item>
+        <item name="android:listChoiceBackgroundIndicator">@drawable/magiclifecounter_dark_list_selector_holo_dark</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/magiclifecounter_dark_activated_background_holo_dark</item>
+        <item name="android:fastScrollThumbDrawable">@drawable/magiclifecounter_dark_fastscroll_thumb_holo</item>
+
+        <!-- Actionbar -->
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_magiclifecounter_dark</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Magiclifecounter_dark</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Magiclifecounter_dark</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Magiclifecounter_dark</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Magiclifecounter_dark</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Magiclifecounter_dark</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_magiclifecounter_dark</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_magiclifecounter_dark</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Magiclifecounter_dark</item>
+    </style>
+</resources>

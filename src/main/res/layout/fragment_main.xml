@@ -1,0 +1,169 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/default_layout_padding">
+
+    <LinearLayout
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
+
+        <Button
+            android:id="@+id/them_plus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+5"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/them_minus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-5"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
+
+        <Button
+            android:id="@+id/them_plus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+1"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/them_minus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-1"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/Widget.MagicLifeCounter.MainRelativeLayout">
+
+        <TextView
+            android:id="@+id/them_score"
+            style="@style/Widget.MagicLifeCounter.MainText"
+            android:text="20"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/you"
+            android:visibility="gone"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:text="@string/you"/>
+
+        <Button
+            android:id="@+id/them_poison_plus"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="+"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/them_poison_counter"
+            android:layout_toLeftOf="@id/them_poison_plus"
+            android:layout_toStartOf="@id/them_poison_plus"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignBaseline="@id/them_poison_counter"
+            android:layout_marginRight="@dimen/default_layout_margin_half"
+            android:layout_marginLeft="@dimen/default_layout_margin_half"
+            android:text="0"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/them_poison_minus"
+            android:layout_toLeftOf="@id/them_poison_counter"
+            android:layout_toStartOf="@id/them_poison_counter"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="-"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+    <!-- Bottom -->
+    <RelativeLayout
+        style="@style/Widget.MagicLifeCounter.MainRelativeLayout">
+
+        <TextView
+            android:id="@+id/me_score"
+            style="@style/Widget.MagicLifeCounter.MainText"
+            android:text="20"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/me"
+            android:visibility="gone"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignBaseline="@id/me_score"
+            android:text="@string/me"/>
+
+        <Button
+            android:id="@+id/me_poison_plus"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="+"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@id/me_score"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <TextView
+            android:id="@+id/me_poison_counter"
+            android:layout_toLeftOf="@id/me_poison_plus"
+            android:layout_toStartOf="@id/me_poison_plus"
+            style="@style/Widget.MagicLifeCounter.SecondaryText"
+            android:layout_alignBaseline="@id/me_poison_plus"
+            android:layout_marginRight="@dimen/default_layout_margin_half"
+            android:layout_marginLeft="@dimen/default_layout_margin_half"
+            android:text="0"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_poison_minus"
+            android:layout_toLeftOf="@id/me_poison_counter"
+            android:layout_toStartOf="@id/me_poison_counter"
+            style="@style/Widget.MagicLifeCounter.PoisonButton"
+            android:text="-"
+            android:layout_alignBaseline="@id/me_score"
+            android:visibility="gone"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
+
+        <Button
+            android:id="@+id/me_plus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+1"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_minus_1"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-1"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Widget.MagicLifeCounter.MainLinearLayout">
+
+        <Button
+            android:id="@+id/me_plus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="+5"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/me_minus_5"
+            style="@style/Widget.MagicLifeCounter.MainButton"
+            android:text="-5"
+            tools:ignore="HardcodedText"/>
+    </LinearLayout>
+</LinearLayout>

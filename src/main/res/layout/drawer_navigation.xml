@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              style="?android:buttonBarStyle"
+              android:background="?android:colorBackground">
+
+    <TextView
+        android:id="@+id/nav_drawer_casual"
+        style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
+        android:text="@string/casual"/>
+
+    <TextView
+        android:id="@+id/nav_drawer_tournament"
+        style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
+        android:text="@string/tournement"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/nav_drawer_multi_player"
+        style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
+        android:text="@string/multi_player"/>
+
+    <TextView
+        android:id="@+id/nav_drawer_settings"
+        style="@style/Widget.MagicLifeCounter.NavDrawer.Text"
+        android:text="@string/settings"/>
+</LinearLayout>

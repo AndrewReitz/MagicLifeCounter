@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="None"/>
+
+    <style name="Widget.MagicLifeCounter.NavDrawer.Text" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:gravity">center</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/default_layout_padding_half</item>
+        <item name="android:background">?android:attr/listChoiceBackgroundIndicator</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.MainLinearLayout" parent="None">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.MainRelativeLayout" parent="None">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.MainButton" parent="None">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.MainText" parent="None">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/main_text_size</item>
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:freezesText">true</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.SecondaryText" parent="None">
+        <item name="android:textSize">@dimen/secondary_text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:freezesText">true</item>
+    </style>
+
+    <style name="Widget.MagicLifeCounter.PoisonButton" parent="None">
+        <item name="android:layout_width">@dimen/poison_button_size</item>
+        <item name="android:layout_height">@dimen/poison_button_size</item>
+    </style>
+</resources>
