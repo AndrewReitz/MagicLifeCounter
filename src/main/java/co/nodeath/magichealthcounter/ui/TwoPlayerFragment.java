@@ -114,13 +114,9 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_flip_coin:
-//        dialog = new CoinFlipDialog();
-//        dialog.show(fragmentManager, "coinflip");
         new CoinFlipDialog().show(fragmentManager, "coinflip");
         break;
       case R.id.action_roll_die:
-//        dialog = new D20Dialog();
-//        dialog.show(fragmentManager, "D20");
         new D20Dialog().show(fragmentManager, "D20");
         break;
       case R.id.action_poison:
