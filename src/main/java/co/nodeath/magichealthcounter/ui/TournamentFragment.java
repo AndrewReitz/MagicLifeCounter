@@ -23,6 +23,7 @@ import co.nodeath.magichealthcounter.Analytics;
 import co.nodeath.magichealthcounter.R;
 import co.nodeath.magichealthcounter.data.SeenTrackerDrawer;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
+import co.nodeath.magichealthcounter.ui.event.TrackerDrawerEnableEvent;
 import co.nodeath.magichealthcounter.ui.event.TrackerDrawerVisibilityEvent;
 import co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
@@ -70,6 +71,12 @@ public final class TournamentFragment extends TwoPlayerFragment {
   @Override public void onResume() {
     super.onResume();
     bus.post(new ActionBarTitleEvent(getString(R.string.tournement)));
+    bus.post(new TrackerDrawerEnableEvent(true));
+  }
+
+  @Override public void onPause() {
+    super.onPause();
+    bus.post(new TrackerDrawerEnableEvent(false));
   }
 
   @Override public void onActivityCreated(Bundle savedInstanceState) {

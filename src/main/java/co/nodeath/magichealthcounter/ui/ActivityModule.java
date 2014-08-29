@@ -17,9 +17,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
     injects = {
         MainActivity.class,
         TournamentFragment.class,
-        CasualFragment.class,
-        D20Dialog.class,
-        CoinFlipDialog.class
+        CasualFragment.class
     },
     addsTo = MagicLifeCounterModule.class,
     library = true

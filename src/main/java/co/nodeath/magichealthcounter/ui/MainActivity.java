@@ -37,11 +37,14 @@ import co.nodeath.magichealthcounter.data.ScreenTimeout;
 import co.nodeath.magichealthcounter.data.SeenNavDrawer;
 import co.nodeath.magichealthcounter.ui.event.ActionBarTitleEvent;
 import co.nodeath.magichealthcounter.ui.event.ClearScoreEvent;
+import co.nodeath.magichealthcounter.ui.event.TrackerDrawerEnableEvent;
 import co.nodeath.magichealthcounter.ui.event.TrackerDrawerVisibilityEvent;
 import co.nodeath.magichealthcounter.ui.event.UpdateScoreEvent;
 import co.nodeath.magichealthcounter.ui.misc.BaseActivity;
 import icepick.Icicle;
 
+import static android.support.v4.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
+import static android.support.v4.widget.DrawerLayout.LOCK_MODE_UNLOCKED;
 import static android.widget.Toast.LENGTH_LONG;
 import static butterknife.ButterKnife.findById;
 
@@ -184,6 +187,16 @@ public final class MainActivity extends BaseActivity {
     }
   }
 
+  @Subscribe public void onTrackerDrawerEnableEvent(TrackerDrawerEnableEvent event) {
+    int mode;
+    if (event.enabled) {
+      mode = LOCK_MODE_UNLOCKED;
+    } else {
+      mode = LOCK_MODE_LOCKED_CLOSED;
+    }
+    drawerLayout.setDrawerLockMode(mode, Gravity.END);
+  }
+
   @Subscribe public void onScoreUpdateEvent(UpdateScoreEvent event) {
     if (currentFragment == TournamentFragment.class) {
       scoreTrackerAdapter.addScoreEvent(event);
@@ -251,6 +264,8 @@ public final class MainActivity extends BaseActivity {
     drawerLayout.setDrawerListener(drawerToggle);
     drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_left, Gravity.START);
     drawerLayout.setDrawerShadow(R.drawable.drawer_shadow_right, Gravity.END);
+
+    drawerLayout.setDrawerLockMode(LOCK_MODE_LOCKED_CLOSED, Gravity.END);
 
     //noinspection ConstantConditions
     actionBar.setDisplayHomeAsUpEnabled(true);

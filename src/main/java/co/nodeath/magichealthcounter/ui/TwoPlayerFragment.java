@@ -81,7 +81,6 @@ abstract class TwoPlayerFragment extends BaseFragment {
   private static final ClearScoreEvent ClearScoreEvent = new ClearScoreEvent();
 
   private MenuItem poisonToggle;
-  private DialogFragment dialog;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -95,9 +94,6 @@ abstract class TwoPlayerFragment extends BaseFragment {
 
   @Override public void onPause() {
     super.onPause();
-    if (dialog != null) {
-      dialog.dismiss();
-    }
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -118,12 +114,14 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_flip_coin:
-        dialog = new CoinFlipDialog();
-        dialog.show(fragmentManager, "coinflip");
+//        dialog = new CoinFlipDialog();
+//        dialog.show(fragmentManager, "coinflip");
+        new CoinFlipDialog().show(fragmentManager, "coinflip");
         break;
       case R.id.action_roll_die:
-        dialog = new D20Dialog();
-        dialog.show(fragmentManager, "D20");
+//        dialog = new D20Dialog();
+//        dialog.show(fragmentManager, "D20");
+        new D20Dialog().show(fragmentManager, "D20");
         break;
       case R.id.action_poison:
         togglePoisonCounters();
