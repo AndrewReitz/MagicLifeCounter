@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.github.fernandodev.easyratingdialog.library.EasyRatingDialog;
 import com.google.common.collect.Maps;
 import com.inkapplications.preferences.BooleanPreference;
 import com.inkapplications.preferences.StringPreference;
@@ -57,6 +58,7 @@ public final class MainActivity extends BaseActivity {
   @Inject @Main Handler mainThreadHandler;
   @Inject Bus bus;
   @Inject Analytics analytics;
+  @Inject EasyRatingDialog ratingDialog;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
   @InjectView(R.id.score_tracker) ListView trackerList;
@@ -67,7 +69,6 @@ public final class MainActivity extends BaseActivity {
   private final Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
 
   private String actionbarTitle = "";
-  private boolean shouldDimScreen = true;
 
   /** Runnable that gets executed when the screen timeout has occurred */
   private final Runnable screenTimeOutRunnable = new Runnable() {
@@ -121,10 +122,16 @@ public final class MainActivity extends BaseActivity {
     }
   }
 
+  @Override protected void onStart() {
+    super.onStart();
+    ratingDialog.onStart();
+  }
+
   @Override protected void onResume() {
     super.onResume();
     startScreenTimeOut();
     bus.register(this);
+    ratingDialog.showIfNeeded(this);
   }
 
   @Override protected void onPause() {
@@ -262,13 +269,11 @@ public final class MainActivity extends BaseActivity {
   }
 
   private void startScreenTimeOut() {
-    if (shouldDimScreen) {
-      mainThreadHandler.postDelayed(screenTimeOutRunnable,
-          TimeUnit.SECONDS.toMillis(
-              Integer.parseInt(screenTimeout.get())
-          )
-      );
-    }
+    mainThreadHandler.postDelayed(screenTimeOutRunnable,
+        TimeUnit.SECONDS.toMillis(
+            Integer.parseInt(screenTimeout.get())
+        )
+    );
   }
 
   private void stopScreenTimeOut() {

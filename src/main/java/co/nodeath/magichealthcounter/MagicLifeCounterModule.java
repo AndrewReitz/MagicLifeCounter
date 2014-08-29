@@ -1,7 +1,9 @@
 package co.nodeath.magichealthcounter;
 
 import android.app.Application;
+import android.util.SparseArray;
 
+import com.github.fernandodev.easyratingdialog.library.EasyRatingDialog;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Bus;
@@ -45,6 +47,10 @@ public final class MagicLifeCounterModule {
 
   @Provides @Singleton Bus provideBus() {
     return new Bus();
+  }
+
+  @Provides @Singleton EasyRatingDialog provideRatingDailog() {
+    return new EasyRatingDialog(app);
   }
 
   @Provides @Singleton Tracker provideTracker() {

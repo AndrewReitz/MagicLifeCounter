@@ -103,7 +103,11 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.menu_magic, menu);
     poisonToggle = menu.findItem(R.id.action_poison);
-    togglePoisonCounters();
+    if (showingPoison) {
+      setPoisonText(R.string.hide_poision_counters, showViews);
+    } else {
+      setPoisonText(R.string.show_poision_counters, hideViews);
+    }
 
     if (darkTheme.get()) {
       menu.findItem(R.id.action_flip_coin).setIcon(R.drawable.ic_action_coin_dark);

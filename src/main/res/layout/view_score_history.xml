@@ -14,8 +14,9 @@
             android:id="@+id/score_item_view_who"
             android:gravity="start|end|center_vertical"
             android:layout_marginRight="@dimen/default_layout_margin"
+            android:layout_marginEnd="@dimen/default_layout_margin"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="?android:textColorPrimaryInverse"
+            android:textColor="?android:textColorSecondary"
             android:textStyle="bold"/>
 
         <TextView
@@ -23,6 +24,7 @@
             android:gravity="start|end|center_vertical"
             android:textAppearance="?android:textAppearanceMedium"
             android:layout_marginRight="@dimen/default_layout_margin"
+            android:layout_marginEnd="@dimen/default_layout_margin"
             android:textColor="?android:textColorSecondary"/>
 
         <TextView

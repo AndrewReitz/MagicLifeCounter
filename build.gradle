@@ -35,6 +35,8 @@ dependencies {
 
   compile 'com.inkapplications:android-preferences:1.1.+'
 
+  compile 'com.github.fernandodev.easyratingdialog:easyratingdialog:1.0.+'
+
   compile 'com.google.guava:guava:18.0'
 
   compile 'com.intellij:annotations:12.0'
