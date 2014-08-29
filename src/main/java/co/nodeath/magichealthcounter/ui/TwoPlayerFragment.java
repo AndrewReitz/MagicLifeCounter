@@ -216,6 +216,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
   }
 
   void setPoisonText(int textId, Action<View> butterKnifeAction) {
+    if (poisonViews == null) return;
     poisonToggle.setTitle(getText(textId));
     ButterKnife.apply(poisonViews, butterKnifeAction);
   }
