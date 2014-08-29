@@ -1,5 +1,6 @@
 package co.nodeath.magichealthcounter.ui;
 
+import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -80,6 +81,7 @@ abstract class TwoPlayerFragment extends BaseFragment {
   private static final ClearScoreEvent ClearScoreEvent = new ClearScoreEvent();
 
   private MenuItem poisonToggle;
+  private DialogFragment dialog;
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -91,9 +93,17 @@ abstract class TwoPlayerFragment extends BaseFragment {
     return inflater.inflate(R.layout.fragment_main, container, false);
   }
 
+  @Override public void onPause() {
+    super.onPause();
+    if (dialog != null) {
+      dialog.dismiss();
+    }
+  }
+
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.menu_magic, menu);
     poisonToggle = menu.findItem(R.id.action_poison);
+    togglePoisonCounters();
 
     if (darkTheme.get()) {
       menu.findItem(R.id.action_flip_coin).setIcon(R.drawable.ic_action_coin_dark);
@@ -104,10 +114,12 @@ abstract class TwoPlayerFragment extends BaseFragment {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case R.id.action_flip_coin:
-        new CoinFlipDialog().show(fragmentManager, "coinflip");
+        dialog = new CoinFlipDialog();
+        dialog.show(fragmentManager, "coinflip");
         break;
       case R.id.action_roll_die:
-        new D20Dialog().show(fragmentManager, "D20");
+        dialog = new D20Dialog();
+        dialog.show(fragmentManager, "D20");
         break;
       case R.id.action_poison:
         togglePoisonCounters();
