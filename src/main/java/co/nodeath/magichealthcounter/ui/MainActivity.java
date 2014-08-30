@@ -2,6 +2,7 @@ package co.nodeath.magichealthcounter.ui;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -61,7 +62,6 @@ public final class MainActivity extends BaseActivity {
   @Inject @Main Handler mainThreadHandler;
   @Inject Bus bus;
   @Inject Analytics analytics;
-  @Inject EasyRatingDialog ratingDialog;
 
   @InjectView(R.id.nav_drawer_layout) DrawerLayout drawerLayout;
   @InjectView(R.id.score_tracker) ListView trackerList;
@@ -70,6 +70,7 @@ public final class MainActivity extends BaseActivity {
 
   private ActionBarDrawerToggle drawerToggle;
   private final Map<Class<? extends Fragment>, Fragment> fragments = Maps.newHashMap();
+  private EasyRatingDialog ratingDialog;
 
   private String actionbarTitle = "";
 
@@ -123,6 +124,8 @@ public final class MainActivity extends BaseActivity {
     if (savedInstanceState == null) {
       navigateToFragment(CasualFragment.class);
     }
+
+    ratingDialog = new EasyRatingDialog(this);
   }
 
   @Override protected void onStart() {
