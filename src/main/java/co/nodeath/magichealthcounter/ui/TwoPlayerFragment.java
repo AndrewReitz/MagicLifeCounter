@@ -1,6 +1,5 @@
 package co.nodeath.magichealthcounter.ui;
 
-import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -105,7 +104,11 @@ abstract class TwoPlayerFragment extends BaseFragment {
       setPoisonText(R.string.show_poision_counters, hideViews);
     }
 
-    if (darkTheme.get()) {
+    /*
+    Make sure it's not null because on older slower devices the injection
+    could not happened yet.
+     */
+    if (darkTheme != null && darkTheme.get()) {
       menu.findItem(R.id.action_flip_coin).setIcon(R.drawable.ic_action_coin_dark);
       menu.findItem(R.id.action_roll_die).setIcon(R.drawable.ic_action_d20_dark);
     }
@@ -216,6 +219,10 @@ abstract class TwoPlayerFragment extends BaseFragment {
   }
 
   void setPoisonText(int textId, Action<View> butterKnifeAction) {
+    /*
+    Make sure it's not null because on older slower devices the injection
+    could not happened yet.
+     */
     if (poisonViews == null) return;
     poisonToggle.setTitle(getText(textId));
     ButterKnife.apply(poisonViews, butterKnifeAction);
