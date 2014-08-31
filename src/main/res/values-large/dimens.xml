@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="main_text_size">70sp</dimen>
+    <dimen name="secondary_text_size">35sp</dimen>
+    <dimen name="poison_button_size">50dp</dimen>
+
+</resources>
