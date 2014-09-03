@@ -3,7 +3,7 @@
 
     <style name="None"/>
 
-    <style name="Widget.MagicLifeCounter.NavDrawer.Text" parent="android:Widget.Holo.Light.TextView">
+    <style name="Widget.MagicLifeCounter.NavDrawer.Text" parent="None">
         <item name="android:gravity">center</item>
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="android:layout_width">match_parent</item>
