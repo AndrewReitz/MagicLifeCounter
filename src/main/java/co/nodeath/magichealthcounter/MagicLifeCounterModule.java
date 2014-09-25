@@ -1,14 +1,13 @@
 package co.nodeath.magichealthcounter;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 import android.util.SparseArray;
 
 import com.github.fernandodev.easyratingdialog.library.EasyRatingDialog;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.squareup.otto.Bus;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Singleton;
 
@@ -40,7 +39,7 @@ import timber.log.Timber;
 public final class MagicLifeCounterModule {
   private final MagicLifeCounterApp app;
 
-  public MagicLifeCounterModule(@NotNull MagicLifeCounterApp app) {
+  public MagicLifeCounterModule(@NonNull MagicLifeCounterApp app) {
     this.app = app;
   }
 

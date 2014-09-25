@@ -3,10 +3,9 @@ package co.nodeath.magichealthcounter.ui.misc;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import com.inkapplications.preferences.BooleanPreference;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -56,7 +55,7 @@ public abstract class BaseActivity extends Activity {
     super.onDestroy();
   }
 
-  @Override public void onSaveInstanceState(@NotNull Bundle outState) {
+  @Override public void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     // Save out objects annotated with @Icicle
     Icepick.saveInstanceState(this, outState);

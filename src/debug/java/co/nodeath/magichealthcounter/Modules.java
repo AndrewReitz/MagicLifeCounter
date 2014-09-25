@@ -1,9 +1,9 @@
 package co.nodeath.magichealthcounter;
 
-import org.jetbrains.annotations.NotNull;
+import android.support.annotation.NonNull;
 
 final class Modules {
-    static Object[] list(@NotNull MagicLifeCounterApp app) {
+    static Object[] list(@NonNull MagicLifeCounterApp app) {
         return new Object[]{
                 new MagicLifeCounterModule(app),
                 new DebugMagicLifeCounterModule()

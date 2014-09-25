@@ -83,7 +83,6 @@ abstract class TwoPlayerFragment extends BaseFragment {
 
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setHasOptionsMenu(true);
   }
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +92,11 @@ abstract class TwoPlayerFragment extends BaseFragment {
 
   @Override public void onPause() {
     super.onPause();
+  }
+
+  @Override public void onActivityCreated(Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
+    setHasOptionsMenu(true);
   }
 
   @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -106,7 +110,8 @@ abstract class TwoPlayerFragment extends BaseFragment {
 
     /*
     Make sure it's not null because on older slower devices the injection
-    could not happened yet.
+    could not happened yet. Update: Problem should have been fixed in this commit. I
+    feel dumb...
      */
     if (darkTheme != null && darkTheme.get()) {
       menu.findItem(R.id.action_flip_coin).setIcon(R.drawable.ic_action_coin_dark);

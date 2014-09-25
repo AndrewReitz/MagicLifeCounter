@@ -4,13 +4,12 @@ import android.app.Application;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
 
 import com.crashlytics.android.Crashlytics;
 import com.inkapplications.preferences.StringPreference;
 
 import co.nodeath.magichealthcounter.ui.ActivityHierarchyServer;
-
-import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
@@ -59,11 +58,11 @@ public class MagicLifeCounterApp extends Application {
     return objectGraph;
   }
 
-  public void inject(@NotNull Object o) {
+  public void inject(@NonNull Object o) {
     objectGraph.inject(o);
   }
 
-  public static MagicLifeCounterApp get(@NotNull Context context) {
+  public static MagicLifeCounterApp get(@NonNull Context context) {
     return (MagicLifeCounterApp) context.getApplicationContext();
   }
 }

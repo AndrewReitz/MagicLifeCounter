@@ -137,7 +137,7 @@ public final class MainActivity extends BaseActivity {
     super.onResume();
     startScreenTimeOut();
     bus.register(this);
-    ratingDialog.showIfNeeded(this);
+    ratingDialog.showIfNeeded();
   }
 
   @Override protected void onPause() {
